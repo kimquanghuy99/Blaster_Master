@@ -125,9 +125,32 @@ void CMario::Render()
 	if (state == MARIO_STATE_DIE)
 		ani = MARIO_ANI_DIE;
 	else
+		
 		if (level == MARIO_LEVEL_BIG)
 		{
-			if (vx == 0)
+			switch (nx)
+			{
+			case 0:
+				ani = MARIO_ANI_BIG_IDLE_LEFT;
+				break;
+			case 1:
+				ani = MARIO_ANI_BIG_IDLE_RIGHT;
+				break;
+			case 2:
+				ani = MARIO_ANI_BIG_IDLE_UP;
+				break;
+			case 3:
+				ani = MARIO_ANI_BIG_IDLE_DOWN;
+				break;
+			}
+			if (vx > 0)
+				ani = MARIO_ANI_BIG_WALKING_RIGHT;
+			else if (vx < 0) ani = MARIO_ANI_BIG_WALKING_LEFT;
+			else if (vy > 0)
+				ani = MARIO_ANI_BIG_WALKING_DOWN;
+			else if (vy<0)
+				ani = MARIO_ANI_BIG_WALKING_UP;
+			/*if (vx == 0)
 			{
 				if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
 				else ani = MARIO_ANI_BIG_IDLE_LEFT;
@@ -135,14 +158,7 @@ void CMario::Render()
 			else if (vx > 0)
 				ani = MARIO_ANI_BIG_WALKING_RIGHT;
 			else ani = MARIO_ANI_BIG_WALKING_LEFT;
-			/*if (vy == 0)
-			{
-				if (ny > 0) ani = MARIO_ANI_BIG_IDLE_BOTTOM;
-				else ani = MARIO_ANI_BIG_IDLE_TOP;
-			}
-			else if(vy>0)
-				ani =
-				*/
+			*/
 		}
 		else if (level == MARIO_LEVEL_SMALL)
 		{
@@ -170,39 +186,21 @@ void CMario::SetState(int state)
 
 	switch (state)
 	{
-	case MARIO_STATE_WALKING_DOWN:
-		if (y >= 240 - 50)
-		{
-			y = 240 - 50;
-			vy = MARIO_WALKING_SPEED;
-		}
-		vy = MARIO_WALKING_SPEED;
-		break;
-	case MARIO_STATE_WALKING_UP:
-		if (y <= 0)
-		{
-			y = 3;
-			vy = -MARIO_WALKING_SPEED;
-		}
-		vy = -MARIO_WALKING_SPEED;
+	case MARIO_STATE_WALKING_LEFT:
+		vx = -MARIO_WALKING_SPEED;
+		nx = 0;
 		break;
 	case MARIO_STATE_WALKING_RIGHT:
-		if (x >= 360 - 40)
-		{
-			x = 360 - 40;
-			vx = MARIO_WALKING_SPEED;
-		}
 		vx = MARIO_WALKING_SPEED;
 		nx = 1;
 		break;
-	case MARIO_STATE_WALKING_LEFT:
-		if (x <= 0)
-		{
-			x = 0;
-			vx = -MARIO_WALKING_SPEED;
-		}
-		vx = -MARIO_WALKING_SPEED;
-		nx = -1;
+	case MARIO_STATE_WALKING_UP:
+		vy = -MARIO_WALKING_SPEED;
+		nx = 2;
+		break;
+	case MARIO_STATE_WALKING_DOWN:
+		vy = MARIO_WALKING_SPEED;
+		nx = 3;
 		break;
 	case MARIO_STATE_JUMP:
 		// TODO: need to check if Mario is *current* on a platform before allowing to jump again
