@@ -32,6 +32,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_GOOMBA	2
 #define OBJECT_TYPE_KOOPAS	3
 
+#define	OBJECT_TYPE_PEEPER 51
 #define OBJECT_TYPE_TANK	100
 
 #define OBJECT_TYPE_PORTAL	50
@@ -264,7 +265,7 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetScreenWidth() / 2;
 	cy -= game->GetScreenHeight() / 2;
 
-	CGame::GetInstance()->SetCamPos(0, 0 /*cy*/);
+	CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
 }
 
 void CPlayScene::Render()
