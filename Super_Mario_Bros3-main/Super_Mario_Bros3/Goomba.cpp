@@ -1,19 +1,20 @@
 #include "Goomba.h"
 CGoomba::CGoomba()
 {
-	SetState(GOOMBA_STATE_WALKING);
+	SetState(EYE_STATE_WALKING_RIGHT);
+	SetState(EYE_STATE_WALKING_DOWN);
 }
 
 void CGoomba::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x;
+	/*left = x;
 	top = y;
-	right = x + GOOMBA_BBOX_WIDTH;
+	right = x + EYE_BBOX_WIDTH;
 
-	if (state == GOOMBA_STATE_DIE)
-		bottom = y + GOOMBA_BBOX_HEIGHT_DIE;
+	if (state == EYE_STATE_DIE)
+		bottom = y + EYE_BBOX_HEIGHT_DIE;
 	else
-		bottom = y + GOOMBA_BBOX_HEIGHT;
+		bottom = y + EYE_BBOX_HEIGHT;*/
 }
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
@@ -27,29 +28,32 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	x += dx;
 	y += dy;
 
-	if (vx < 0 && x < 0) {
-		x = 0; vx = GOOMBA_WALKING_SPEED; vy = -GOOMBA_WALKING_SPEED;
+	if (x < LEFT_LIMIT) {
+		SetState(EYE_STATE_WALKING_RIGHT);
 	}
+	else
+		if (x > RIGHT_LIMIT) {
+			SetState(EYE_STATE_WALKING_LEFT);
+		}
 
-	if (vx > 0 && x > 289) {
-		x = 289; vx = GOOMBA_WALKING_SPEED; vy = GOOMBA_WALKING_SPEED;
+	if (y < TOP_LIMIT) {
+		SetState(EYE_STATE_WALKING_DOWN);
 	}
-
-	if (vy < 0 && y < 0) {
-		y = 0; vy = GOOMBA_WALKING_SPEED; vx = GOOMBA_WALKING_SPEED;
-	}
-
-	if (vy > 0 && y > 135) {
-		y = 135; vy = GOOMBA_WALKING_SPEED; vx = -GOOMBA_WALKING_SPEED;
-	}
+	else
+		if (y > BOTTOM_LIMIT) {
+			SetState(EYE_STATE_WALKING_UP);
+		}
 }
 
 void CGoomba::Render()
 {
-	int ani = GOOMBA_ANI_WALKING;
-	if (state == GOOMBA_STATE_DIE) {
-		ani = GOOMBA_ANI_DIE;
-	}
+	int ani = EYE_ANI_WALKING;
+	/*if (state == EYE_STATE_DIE) {
+		ani = EYE_ANI_DIE;
+	}*/
+	if (vx > 0)
+		ani = EYE_ANI_WALKING;
+	else ani = EYE_ANI_DIE;
 
 	animation_set->at(ani)->Render(x, y);
 
@@ -61,12 +65,21 @@ void CGoomba::SetState(int state)
 	CGameObject::SetState(state);
 	switch (state)
 	{
-	case GOOMBA_STATE_DIE:
-		y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE + 1;
+	case EYE_STATE_DIE:
+		y += EYE_BBOX_HEIGHT - EYE_BBOX_HEIGHT_DIE + 1;
 		vx = 0;
 		vy = 0;
 		break;
-	case GOOMBA_STATE_WALKING:
-		vx = -GOOMBA_WALKING_SPEED;
+	case EYE_STATE_WALKING_RIGHT:
+		vx = EYE_WALKING_SPEED;
+		break;
+	case EYE_STATE_WALKING_LEFT:
+		vx = -EYE_WALKING_SPEED;
+		break;
+	case EYE_STATE_WALKING_UP:
+		vy = -EYE_WALKING_SPEED;
+		break;
+	case EYE_STATE_WALKING_DOWN:
+		vy = EYE_WALKING_SPEED;
 	}
 }

@@ -32,6 +32,9 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_GOOMBA	2
 #define OBJECT_TYPE_KOOPAS	3
 
+#define	OBJECT_TYPE_PEEPER 51
+#define OBJECT_TYPE_TANK	100
+
 #define OBJECT_TYPE_PORTAL	50
 
 #define MAX_SCENE_LINE 1024
@@ -155,6 +158,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(); break;
+	case OBJECT_TYPE_TANK: 
+		{
+			float part = atof(tokens[4].c_str());
+			obj = new TankParts(part);
+		}
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
 	case OBJECT_TYPE_PORTAL:
 	{
@@ -257,7 +265,7 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetScreenWidth() / 2;
 	cy -= game->GetScreenHeight() / 2;
 
-	CGame::GetInstance()->SetCamPos(0, 0 /*cy*/);
+	CGame::GetInstance()->SetCamPos(cx, cy /*cy*/);
 }
 
 void CPlayScene::Render()
