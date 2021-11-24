@@ -20,9 +20,9 @@
 #include "GameObject.h"
 #include "Textures.h"
 
-#include "Mario.h"
+#include "Tank_Body.h"
 #include "Brick.h"
-#include "Goomba.h"
+#include "Stuka.h"
 
 #include "PlayScene.h"
 
@@ -30,7 +30,7 @@
 #define MAIN_WINDOW_TITLE L"SAMPLE 05 - SCENCE MANAGER"
 
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(255, 255, 200)
-#define SCREEN_WIDTH 320
+#define SCREEN_WIDTH  320
 #define SCREEN_HEIGHT 240
 
 #define MAX_FRAME_RATE 120

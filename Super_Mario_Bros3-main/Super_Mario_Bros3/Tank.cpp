@@ -1,25 +1,24 @@
 #include "Tank.h"
-#include "Tank.h"
 #include <algorithm>
 #include "PlayScene.h"
 
 
-TankParts::TankParts(int part)
+Tank::Tank(int part)
 {
 	this->part = part;
 }
 
-void TankParts::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void Tank::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
 	top = y;
-	right = x + TankParts_BBOX_WIDTH;
-	if (state == TankParts_STATE_DIE)
-		y = y + TankParts_BBOX_HEIGHT;
-	else bottom = y + TankParts_BBOX_HEIGHT;
+	right = x + TANK_BBOX_WIDTH;
+	if (state == TANK_STATE_DIE)
+		y = y + TANK_BBOX_HEIGHT;
+	else bottom = y + TANK_BBOX_HEIGHT;
 }
 
-void TankParts::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void Tank::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 
 	CGameObject::Update(dt, coObjects);
@@ -29,27 +28,27 @@ void TankParts::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	coEvents.clear();
 
 	// turn off collision when die 
-	if (state != TankParts_STATE_DIE)
+	if (state != TANK_STATE_DIE)
 		CalcPotentialCollisions(coObjects, coEvents);
 
-	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	CTank_Body* TANK_BODY = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	switch (part)
 	{
-	case TankParts_LEFT_WHEEL:
-		x = mario->x - TankParts_WHEEL_DISTANT_X;
+	case TANK_LEFT_WHEEL:
+		x = TANK_BODY->x - TANK_WHEEL_DISTANT_X;
 		break;
-	case TankParts_RIGHT_WHEEL:
-		x = mario->x + TankParts_WHEEL_DISTANT_X;
+	case TANK_RIGHT_WHEEL:
+		x = TANK_BODY->x + TANK_WHEEL_DISTANT_X;
 		break;
-	case TankParts_TURRET:
-		x = mario->x - TankParts_TURRET_DISTANT_X;
+	case TANK_TURRET:
+		x = TANK_BODY->x - TANK_TURRET_DISTANT_X;
 		break;
 	}
-	if (part == TankParts_TURRET)
-		y = mario->y - TankParts_TURRET_DISTANT_Y;
+	if (part == TANK_TURRET)
+		y = TANK_BODY->y - TANK_TURRET_DISTANT_Y;
 	else
-		y = mario->y + TankParts_WHEEL_DISTANT_Y;
+		y = TANK_BODY->y + TANK_WHEEL_DISTANT_Y;
 
 	// No collision occured, proceed normally
 	if (coEvents.size() == 0)
@@ -66,42 +65,37 @@ void TankParts::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		// TODO: This is a very ugly designed function!!!!
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
 
-		// how to push back Mario if collides with a moving objects, what if Mario is pushed this way into another object?
+		// how to push back TANK_BODY if collides with a moving objects, what if TANK_BODY is pushed this way into another object?
 		//if (rdx != 0 && rdx!=dx)
 		//	x += nx*abs(rdx); 
 
 		// block every object first!
-		//x += min_tx * dx + nx * 0.4f;
+		x += min_tx * dx + nx * 0.4f;
+		y += min_ty * dy + ny * 0.4f;
 
-		//if(nx != 0 && ny != 0)
-		//y += min_ty * dy + ny * 0.4f;
-
-		//if (ny != 0) vy = 0;
+		if (nx != 0) vx = 0;
+		if (ny != 0) vy = 0;
 
 		//
 		// Collision logic with other objects
 		//
-
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
-
+			LPCOLLISIONEVENT e = coEventsResult[i];
 		}
-		// clean up collision events
-		for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 	}
+
+	// clean up collision events
+	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }
 
-void TankParts::CalcPotentialCollisions(
+void Tank::CalcPotentialCollisions(
 	vector<LPGAMEOBJECT>* coObjects,
 	vector<LPCOLLISIONEVENT>& coEvents)
 {
 	for (UINT i = 0; i < coObjects->size(); i++)
 	{
 		LPCOLLISIONEVENT e = SweptAABBEx(coObjects->at(i));
-		if (dynamic_cast<CMario*>(e->obj))
-		{
-			continue;
-		}
 		if (e->t > 0 && e->t <= 1.0f)
 			coEvents.push_back(e);
 		else
@@ -110,45 +104,45 @@ void TankParts::CalcPotentialCollisions(
 	std::sort(coEvents.begin(), coEvents.end(), CCollisionEvent::compare);
 }
 
-void TankParts::Render()
+void Tank::Render()
 {
-	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	CTank_Body* TANK_BODY = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	int ani = 0;
-	if (mario->vx > 0)
+	if (TANK_BODY->vx > 0)
 	{
 		switch (part)
 		{
-		case TankParts_TURRET:
+		case TANK_TURRET:
 			ani = TURRET_ANI_IDLE_RIGHT;
 			pre_ani = ani;
 			break;
-		case TankParts_RIGHT_WHEEL:
+		case TANK_RIGHT_WHEEL:
 			ani = WHEELING_ANI_RIGHT;
 			break;
-		case TankParts_LEFT_WHEEL:
+		case TANK_LEFT_WHEEL:
 			ani = WHEELING_ANI_RIGHT;
 			break;
 		}
 	}
-	else if (mario->vx < 0)
+	else if (TANK_BODY->vx < 0)
 	{
 		switch (part)
 		{
-		case TankParts_TURRET:
+		case TANK_TURRET:
 			ani = TURRET_ANI_IDLE_LEFT;
 			pre_ani = ani;
 			break;
-		case TankParts_RIGHT_WHEEL:
+		case TANK_RIGHT_WHEEL:
 			ani = WHEELING_ANI_LEFT;
 			break;
-		case TankParts_LEFT_WHEEL:
+		case TANK_LEFT_WHEEL:
 			ani = WHEELING_ANI_LEFT;
 			break;
 		}
 	}
-	else if (mario->vx == 0)
+	else if (TANK_BODY->vx == 0)
 	{
-		if (part != TankParts_TURRET)
+		if (part != TANK_TURRET)
 			ani = WHEELING_ANI_IDLE;
 		else
 			ani = pre_ani;
@@ -159,7 +153,7 @@ void TankParts::Render()
 	//RenderBoundingBox();
 }
 
-void TankParts::SetState(int state)
+void Tank::SetState(int state)
 {
 	CGameObject::SetState(state);
 	//switch (state)

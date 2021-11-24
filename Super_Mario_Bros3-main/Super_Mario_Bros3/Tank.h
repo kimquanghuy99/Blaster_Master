@@ -1,18 +1,19 @@
 #pragma once
+#pragma once
 #include "GameObject.h"
 
-#define TankParts_STATE_DIE 0
-#define TankParts_BBOX_WIDTH 10
-#define TankParts_BBOX_HEIGHT 10
+#define TANK_STATE_DIE 0
+#define TANK_BBOX_WIDTH 10
+#define TANK_BBOX_HEIGHT 10
 
-#define TankParts_WHEEL_DISTANT_X 9
-#define TankParts_WHEEL_DISTANT_Y 0
-#define TankParts_TURRET_DISTANT_X 9
-#define TankParts_TURRET_DISTANT_Y 10
+#define TANK_WHEEL_DISTANT_X 9
+#define TANK_WHEEL_DISTANT_Y 0
+#define TANK_TURRET_DISTANT_X 9
+#define TANK_TURRET_DISTANT_Y 10
 
-#define TankParts_LEFT_WHEEL 0
-#define TankParts_RIGHT_WHEEL 1
-#define TankParts_TURRET 2
+#define TANK_LEFT_WHEEL 0
+#define TANK_RIGHT_WHEEL 1
+#define TANK_TURRET 2
 
 #define WHEELING_ANI_RIGHT 0
 #define WHEELING_ANI_LEFT 1
@@ -26,7 +27,7 @@
 
 
 
-class TankParts : public CGameObject
+class Tank : public CGameObject
 {
 	int part = 0;
 	int pre_ani = 0;
@@ -37,7 +38,7 @@ class TankParts : public CGameObject
 
 public:
 	float upBoudary;
-	TankParts(int part);
+	Tank(int part);
 	virtual void SetState(int state);
 };
 
