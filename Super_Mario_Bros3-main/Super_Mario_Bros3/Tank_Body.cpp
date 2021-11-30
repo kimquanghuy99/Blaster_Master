@@ -26,7 +26,7 @@ void CTank_Body::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	CGameObject::Update(dt);
 
 	// Simple fall down
-	/*vy += TANK_BODY_GRAVITY * dt;*/
+	vy += TANK_BODY_GRAVITY * dt;
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;

@@ -6,13 +6,15 @@
 300	textures\BM\30000.png	255	255	255
 400	textures\BM\map4_bank.png	255	255	255
 700	textures\BM\map3_bank.png	255	255	255
-
+800	textures\BM\area3tiles.png	255	255	255
 
 [MAP]
 #400	57	7	62	56	399	textures\BM\map_4.txt
 #700	67	6	75	109	402	textures\BM\map_3.txt
 # id	left	top	right	bottom	texture_id
 [SPRITES]
+#Gạch
+80505	81	81	97	97	800
 #TURRET_RIGHT
 69200	0	8	26	17	200
 #TURRET_LEFT
@@ -247,7 +249,7 @@
 
 
 # ==== BRICK =========
-601	20001	100
+601	80505	100
 
 # ==== QUESTION MARK BRICK =========
 602	40001	1000	40001	100	40002	100	40003	100	40004	100
