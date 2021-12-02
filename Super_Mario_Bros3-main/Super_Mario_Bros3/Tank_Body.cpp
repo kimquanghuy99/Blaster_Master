@@ -5,10 +5,10 @@
 #include "TANK_BODY.h"
 #include "Game.h"
 
-#include "Eye.h"
+#include "Eyelet.h"
 #include "Portal.h"
 
-CTANK_BODY::CTANK_BODY(float x, float y) : CGameObject()
+CTank_Body::CTank_Body(float x, float y) : CGameObject()
 {
 	level = TANK_BODY_LEVEL_BIG;
 	untouchable = 0;
@@ -18,10 +18,9 @@ CTANK_BODY::CTANK_BODY(float x, float y) : CGameObject()
 	start_y = y;
 	this->x = x;
 	this->y = y;
-	
 }
 
-void CTANK_BODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void CTank_Body::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	// Calculate dx, dy 
 	CGameObject::Update(dt);
@@ -84,9 +83,8 @@ void CTANK_BODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }
 
-void CTANK_BODY::Render()
+void CTank_Body::Render()
 {
-	
 	int ani = -1;
 	if (state == TANK_BODY_STATE_DIE)
 		ani = TANK_BODY_ANI_DIE;
@@ -122,7 +120,7 @@ void CTANK_BODY::Render()
 	//RenderBoundingBox();
 }
 
-void CTANK_BODY::SetState(int state)
+void CTank_Body::SetState(int state)
 {
 	CGameObject::SetState(state);
 
@@ -148,28 +146,27 @@ void CTANK_BODY::SetState(int state)
 		break;
 	case TANK_BODY_STATE_IDLE:
 		vx = 0;
+		//vy = 0;
 		break;
 	case TANK_BODY_STATE_DIE:
-		vy = TANK_BODY_DIE_DEFLECT_SPEED;
+		vy = -TANK_BODY_DIE_DEFLECT_SPEED;
 		break;
 	}
 }
 
-void CTANK_BODY::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void CTank_Body::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x - 10;
 	top = y - 9;
 
 	right = x + TANK_BODY_BIG_BBOX_WIDTH + 9;
 	bottom = y + TANK_BODY_BIG_BBOX_HEIGHT;
-
-	DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
 }
 
 /*
 	Reset TANK_BODY status to the beginning state of a scene
 */
-void CTANK_BODY::Reset()
+void CTank_Body::Reset()
 {
 	SetState(TANK_BODY_STATE_IDLE);
 	SetLevel(TANK_BODY_LEVEL_BIG);

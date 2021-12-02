@@ -5,8 +5,6 @@
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
-#include "Camera.h"
-#include "PlayScene.h"
 
 
 #define DIRECTINPUT_VERSION 0x0800
@@ -37,13 +35,11 @@ class CGame
 
 	LPKEYEVENTHANDLER keyHandler;
 
+	float cam_x = 0.0f;
+	float cam_y = 0.0f;
 
-	CCamera Camera;
 	int screen_width;
 	int screen_height;
-
-	float camX = 0.0f;
-	float camY = 0.0f;
 
 	unordered_map<int, LPSCENE> scenes;
 	int current_scene;
@@ -86,25 +82,18 @@ public:
 	LPDIRECT3DSURFACE9 GetBackBuffer() { return backBuffer; }
 	LPD3DXSPRITE GetSpriteHandler() { return this->spriteHandler; }
 
+	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
+
 	static CGame* GetInstance();
-
-
-	void SetCamPos(float x, float y) { Camera.SetCamPos(x, y); }
 
 	int GetCamX()
 	{
-		return camX;
+		return cam_x;
 	}
 	int GetCamY()
 	{
-		return camY;
+		return cam_y;
 	}
-
-	CCamera GetCam()
-	{
-		return Camera;
-	}
-
 
 	~CGame();
 };
