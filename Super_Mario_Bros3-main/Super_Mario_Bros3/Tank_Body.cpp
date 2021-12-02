@@ -146,7 +146,7 @@ void CTank_Body::SetState(int state)
 		break;
 	case TANK_BODY_STATE_IDLE:
 		vx = 0;
-		vy = 0;
+		//vy = 0;
 		break;
 	case TANK_BODY_STATE_DIE:
 		vy = -TANK_BODY_DIE_DEFLECT_SPEED;

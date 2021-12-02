@@ -149,6 +149,7 @@
     <ClInclude Include="Ballbot.h" />
     <ClInclude Include="Ball_Carry.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Drap.h" />
     <ClInclude Include="Eyelet.h" />
     <ClInclude Include="GX_680.h" />
