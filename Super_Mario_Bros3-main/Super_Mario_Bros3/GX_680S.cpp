@@ -20,7 +20,7 @@ void CGX_680S::GetBoundingBox(float& left, float& top, float& right, float& bott
 
 void CGX_680S::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	/*CGameObject::Update(dt, coObjects);
 
 	//
 	// TO-DO: make sure Koopas can interact with the world and to each of them too!
@@ -40,7 +40,7 @@ void CGX_680S::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	else if (y >= BOTTOM_LIMIT && vy > 0) {
 		SetState(GX680S_STATE_WALKING_UP);
-	}
+	}*/
 
 
 

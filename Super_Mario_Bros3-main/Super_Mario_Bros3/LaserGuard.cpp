@@ -20,7 +20,7 @@ void CLaserGuard::GetBoundingBox(float& left, float& top, float& right, float& b
 
 void CLaserGuard::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	/*CGameObject::Update(dt, coObjects);
 
 	//
 	// TO-DO: make sure Goomba can interact with the world and to each of them too!
@@ -41,7 +41,7 @@ void CLaserGuard::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	else if (y >= BOTTOM_LIMIT && vy > 0) {
 		SetState(LASERGUARD_STATE_WALKING_UP);
-	}
+	}*/
 }
 
 void CLaserGuard::Render()

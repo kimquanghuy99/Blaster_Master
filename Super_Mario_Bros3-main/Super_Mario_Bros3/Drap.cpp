@@ -20,7 +20,7 @@ void CDrap::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 
 void CDrap::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	/*CGameObject::Update(dt, coObjects);
 
 	//
 	// TO-DO: make sure Goomba can interact with the world and to each of them too!
@@ -41,7 +41,7 @@ void CDrap::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	else if (y >= BOTTOM_LIMIT && vy > 0) {
 		SetState(DRAP_STATE_WALKING_UP);
-	}
+	}*/
 }
 
 void CDrap::Render()

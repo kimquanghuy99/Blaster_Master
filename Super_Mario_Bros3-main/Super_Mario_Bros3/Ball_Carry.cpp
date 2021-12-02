@@ -19,7 +19,7 @@ void CBall_Carry::GetBoundingBox(float& left, float& top, float& right, float& b
 
 void CBall_Carry::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	CGameObject::Update(dt, coObjects);
+	/*CGameObject::Update(dt, coObjects);
 
 	//
 	// TO-DO: make sure Koopas can interact with the world and to each of them too!
@@ -32,7 +32,7 @@ void CBall_Carry::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	else if (x >= RIGHT_LIMIT && vx > 0) {
 		SetState(BALLCARRY_STATE_WALKING_LEFT);
-	}
+	}*/
 
 
 

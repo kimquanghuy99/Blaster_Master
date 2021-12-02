@@ -7,14 +7,14 @@ CGoomba::CGoomba()
 
 void CGoomba::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x;
+	/*left = x;
 	top = y;
 	right = x + EYELET_BBOX_WIDTH;
 
 	if (state == EYELET_STATE_DIE)
 		bottom = y + EYELET_BBOX_HEIGHT_DIE;
 	else
-		bottom = y + EYELET_BBOX_HEIGHT;
+		bottom = y + EYELET_BBOX_HEIGHT;*/
 }
 
 void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
