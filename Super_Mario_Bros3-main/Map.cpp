@@ -81,7 +81,7 @@ void Map::Render()
 
 void Map::ExtractTileFromTileSet()
 {
-	for (int TileNumber = 0; TileNumber < TotalTiles; TileNumber++)
+	for (int TileNumber = 0; TileNumber < TotalTiles; TileNumber++) 
 	{
 		int left = TileNumber % TotalColumnsOfTileSet * TILE_WIDTH;
 		int top = TileNumber / TotalColumnsOfTileSet * TILE_HEIGHT;
@@ -94,7 +94,7 @@ void Map::ExtractTileFromTileSet()
 
 void Map::LoadMap(LPCWSTR path)
 {
-	ifstream f;	
+	ifstream f;
 
 	f.open(path);
 

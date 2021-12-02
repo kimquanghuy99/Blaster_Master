@@ -4,17 +4,21 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Brick.h"
-#include "Tank_Body.h"
-#include "Eyelet.h"
-#include "Stuka.h"
+#include "TANK_BODY.h"
+#include "Eye.h"
+#include "Koopas.h"
 #include "Map.h"
-#include "Tank.h"
-#include "Ball_Carry.h"
-#include "Ballbot.h"
-#include "GX_680.h"
-#include "GX_680S.h"
-#include "Drap.h"
-#include "LaserGuard.h"
+#include "TankParts.h"
+#include "MapObj.h"
+#include "CLaserGuard.h"
+#include "CBallCarry.h"
+#include "CBallbot.h"
+#include "CDrap.h"
+#include "CGX680.h"
+#include "CGX680S.h"
+#include "CSTUKA.h"
+#include "Eyelet.h"
+#include "Interrupt.h"
 
 
 #include "Utils.h"
@@ -23,9 +27,9 @@
 #include <fstream>
 
 
-#define GRID_SECTION_SETTINGS	1
-#define GRID_SECTION_OBJECTS	2
-#define MAX_GRID_LINE 1024
+#define QUADTREE_SECTION_SETTINGS	1
+#define QUADTREE_SECTION_OBJECTS	2
+#define MAX_QUADTREE_LINE 1024
 
 class CQuadTree
 {
@@ -38,10 +42,12 @@ class CQuadTree
 	CQuadTree* BrachTR = NULL;
 	CQuadTree* BrachBL = NULL;
 	CQuadTree* BrachBR = NULL;
+	MapObj* obj;
 	vector<LPGAMEOBJECT> listObjects;
 
 	void _ParseSection_SETTINGS(string line);
 	void _ParseSection_OBJECTS(string line);
+	void _ParseSection_MapObj(string line);
 public:
 	CQuadTree(float cellWidth, float cellHeight, float x, float y);
 	CQuadTree(LPCWSTR filePath);
@@ -52,7 +58,7 @@ public:
 	{
 		listObjects.push_back(obj);
 	}
-	int getVollunm() {
+	int getVollunm(){
 		return listObjects.size();
 	}
 	void Render();
@@ -66,10 +72,9 @@ public:
 class CPlayScene : public CScene
 {
 protected:
-	CTank_Body* player;					// A play scene has to have player, right? 
-
+	CTANK_BODY* player;					// A play scene has to have player, right? 
 	vector<LPGAMEOBJECT> objects;
-
+	int mapHeight;
 	Map* map;
 	CQuadTree* quadtree;
 
@@ -79,7 +84,8 @@ protected:
 	void _ParseSection_ANIMATION_SETS(string line);
 	void _ParseSection_OBJECTS(string line);
 	void _ParseSection_MAP(string line);
-	void _ParseSection_GRID(string line);
+	void _ParseSection_QUADTREE(string line);
+	void _ParseSection_SETTING(string line);
 public:
 	CPlayScene(int id, LPCWSTR filePath);
 
@@ -90,10 +96,21 @@ public:
 
 	bool IsInUseArea(float Ox, float Oy);
 
-	CTank_Body* GetPlayer() { return player; }
+	CTANK_BODY* GetPlayer() { return player; }
+
+	void setMapheight(int height)
+	{
+		mapHeight = height;
+	}
+
+	int getMapheight()
+	{
+		return mapHeight;
+	}
 
 	//friend class CPlayScenceKeyHandler;
 };
+
 class CPlayScenceKeyHandler : public CScenceKeyHandler
 {
 public:

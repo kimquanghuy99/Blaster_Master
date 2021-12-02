@@ -3,26 +3,26 @@
 #include "GameObject.h"
 #include "algorithm"
 
-#define EYELET_WALKING_SPEED 0.05f;
+#define CINTERRUPT_WALKING_SPEED 0.05f;
 
-#define EYELET_BBOX_WIDTH 16
-#define EYELET_BBOX_HEIGHT 15
-#define EYELET_BBOX_HEIGHT_DIE 9
+#define CINTERRUPT_BBOX_WIDTH 16
+#define CINTERRUPT_BBOX_HEIGHT 15
+#define CINTERRUPT_BBOX_HEIGHT_DIE 9
 
-#define EYELET_STATE_WALKING_RIGHT 1000
-#define EYELET_STATE_WALKING_LEFT 1001
-#define EYELET_STATE_WALKING_UP 1002
-#define EYELET_STATE_WALKING_DOWN 1003
+#define CINTERRUPT_STATE_WALKING_RIGHT 1000
+#define CINTERRUPT_STATE_WALKING_LEFT 1001
+#define CINTERRUPT_STATE_WALKING_UP 1002
+#define CINTERRUPT_STATE_WALKING_DOWN 1003
 
-#define EYELET_ANI 0
+#define CINTERRUPT_ANI 0
 
-#define EYELET_STATE_IDLE 100
-#define EYELET_STATE_DIE 200
-#define EYELET_STATE_WALKING 300
+#define CINTERRUPT_STATE_IDLE 100
+#define CINTERRUPT_STATE_DIE 200
+#define CINTERRUPT_STATE_WALKING 300
 
 
 
-class CEYELET : public CGameObject
+class CINTERRUPT : public CGameObject
 {
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
@@ -31,6 +31,6 @@ class CEYELET : public CGameObject
 	virtual void Render();
 
 public:
-	CEYELET();
+	CINTERRUPT();
 	virtual void SetState(int state);
 };

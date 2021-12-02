@@ -41,7 +41,7 @@
 
 
 
-class CTank_Body : public CGameObject
+class CTANK_BODY : public CGameObject
 {
 	int level;
 	int untouchable;
@@ -50,7 +50,7 @@ class CTank_Body : public CGameObject
 	float start_x;			// initial position of TANK_BODY at scene
 	float start_y;
 public:
-	CTank_Body(float x = 0.0f, float y = 0.0f);
+	CTANK_BODY(float x = 0.0f, float y = 0.0f);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
 
