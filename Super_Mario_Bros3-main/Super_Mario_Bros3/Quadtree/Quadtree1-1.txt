@@ -6,7 +6,8 @@
 
 [MapObj]
 #widht height path
-26	94	QuadTree\map.txt
+#26	94	QuadTree\map.txt
+47	94	QuadTree\map3.txt
 [OBJECTS]
 # GOOMBA
 2	0	100	305

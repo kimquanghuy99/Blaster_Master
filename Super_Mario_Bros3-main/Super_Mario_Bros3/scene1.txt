@@ -354,7 +354,7 @@
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Brick, 2 = Goomba
 # TANK
-0	0	0	1
+0	1280	660	1
 100	180	2296	304	1
 100	180	2296	305	0
 100	180	2296	306	2
