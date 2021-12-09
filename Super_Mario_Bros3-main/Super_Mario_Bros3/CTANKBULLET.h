@@ -21,6 +21,8 @@
 class CTANKBULLET : public CGameObject
 {
 	DWORD reset_start;
+
+
 	bool isUsed = false;
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
@@ -29,6 +31,7 @@ class CTANKBULLET : public CGameObject
 	void StartReset() { reset_start = (DWORD)GetTickCount64(); }
 
 public:
+
 	CTANKBULLET();
 	void SetisUsed(bool value) { isUsed = value; }
 	bool GetisUsed() { return isUsed; }

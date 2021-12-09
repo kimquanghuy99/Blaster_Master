@@ -22,10 +22,16 @@
 #define CINTERRUPT_STATE_DIE 200
 #define CINTERRUPT_STATE_WALKING 300
 
+#define MARIO_UNTOUCHABLE_TIME 5000
+
+
 
 
 class CINTERRUPT : public CGameObject
 {
+	DWORD untouchable_start;
+
+	int untouchable;
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void CalcPotentialCollisions(vector<LPGAMEOBJECT>* coObjects, vector<LPCOLLISIONEVENT>& coEvents);
@@ -34,5 +40,8 @@ class CINTERRUPT : public CGameObject
 
 public:
 	CINTERRUPT();
+	
+	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
+
 	virtual void SetState(int state);
 };

@@ -19,7 +19,11 @@ void CINTERRUPT::GetBoundingBox(float& left, float& top, float& right, float& bo
 void CINTERRUPT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	CGameObject::Update(dt, coObjects);
-
+	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME)
+	{
+		untouchable_start = 0;
+		untouchable = 0;
+	}
 	//
 	// TO-DO: make sure Goomba can interact with the world and to each of them too!
 	// 
@@ -30,6 +34,7 @@ void CINTERRUPT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CINTERRUPT::Render()
 {
+
 	int ani = CINTERRUPT_ANI;
 	if (state == CINTERRUPT_STATE_DIE) {
 		ani = CINTERRUPT_ANI_DIE;
