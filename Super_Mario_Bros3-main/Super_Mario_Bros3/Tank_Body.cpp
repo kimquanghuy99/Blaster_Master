@@ -6,6 +6,8 @@
 #include "Game.h"
 
 #include "Eye.h"
+#include "Interrupt.h"
+
 #include "Portal.h"
 
 CTANK_BODY::CTANK_BODY(float x, float y) : CGameObject()
@@ -76,6 +78,21 @@ void CTANK_BODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
+			/*if (dynamic_cast<CINTERRUPT*>(e->obj)) // if e->obj is Goomba 
+			{
+				CINTERRUPT* Eye = dynamic_cast<CINTERRUPT*>(e->obj);
+
+				if (e->ny < 0)
+				{
+					if (Eye->GetState() != CINTERRUPT_STATE_DIE)
+					{
+						Eye->SetState(CINTERRUPT_STATE_DIE);
+						vy = -TANK_BODY_JUMP_DEFLECT_SPEED;
+					}
+				}
+				
+			} */
+			
 		}
 	}
 

@@ -24,14 +24,16 @@ void CINTERRUPT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	// TO-DO: make sure Goomba can interact with the world and to each of them too!
 	// 
 
-	x += dx;
-	y += dy;
+	//x += dx;
+	//y += dy;
 }
 
 void CINTERRUPT::Render()
 {
 	int ani = CINTERRUPT_ANI;
-
+	if (state == CINTERRUPT_STATE_DIE) {
+		ani = CINTERRUPT_ANI_DIE;
+	}
 	animation_set->at(ani)->Render(x, y);
 
 	//RenderBoundingBox();
@@ -42,9 +44,12 @@ void CINTERRUPT::SetState(int state)
 	CGameObject::SetState(state);
 	switch (state)
 	{
-	case CINTERRUPT_STATE_WALKING:
-		vx = CINTERRUPT_WALKING_SPEED;
+	case CINTERRUPT_STATE_IDLE:
+		//vx = CINTERRUPT_STATE_IDLE;
 		break;
-
+	case CINTERRUPT_STATE_DIE:
+		vx = 0;
+		vy = 0;
+		break;
 	}
 }

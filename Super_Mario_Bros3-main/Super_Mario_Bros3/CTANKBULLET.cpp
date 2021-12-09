@@ -107,6 +107,20 @@ void CTANKBULLET::CalcPotentialCollisions(
 		{
 				continue;
 		}
+		if (dynamic_cast<CINTERRUPT*>(e->obj))
+		{
+			CINTERRUPT* Eye = dynamic_cast<CINTERRUPT*>(e->obj);
+
+			if (e->nx != 0)
+			{
+				if (Eye->GetState() != CINTERRUPT_STATE_DIE)
+				{
+					Eye->SetState(CINTERRUPT_STATE_DIE);
+					//Eye->x = 99999;
+					vy = -TANK_BODY_JUMP_DEFLECT_SPEED;
+				}
+			}			
+		}
 		if (e->t > 0 && e->t <= 1.0f)
 			coEvents.push_back(e);
 		else

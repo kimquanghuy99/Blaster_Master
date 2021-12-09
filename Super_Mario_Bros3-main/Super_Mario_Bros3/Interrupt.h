@@ -1,6 +1,7 @@
 #pragma once
 #pragma once
 #include "GameObject.h"
+#include "Brick.h"
 #include "algorithm"
 
 #define CINTERRUPT_WALKING_SPEED 0.05f;
@@ -15,6 +16,7 @@
 #define CINTERRUPT_STATE_WALKING_DOWN 1003
 
 #define CINTERRUPT_ANI 0
+#define CINTERRUPT_ANI_DIE	1
 
 #define CINTERRUPT_STATE_IDLE 100
 #define CINTERRUPT_STATE_DIE 200
