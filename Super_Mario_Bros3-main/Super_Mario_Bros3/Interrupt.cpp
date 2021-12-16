@@ -1,7 +1,7 @@
 #include "Interrupt.h"
 CINTERRUPT::CINTERRUPT()
 {
-	SetState(CINTERRUPT_STATE_IDLE);
+	SetState(STATE_IDLE);
 }
 
 void CINTERRUPT::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -18,30 +18,44 @@ void CINTERRUPT::GetBoundingBox(float& left, float& top, float& right, float& bo
 
 void CINTERRUPT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 	CGameObject::Update(dt, coObjects);
-	if (GetTickCount() - untouchable_start > MARIO_UNTOUCHABLE_TIME)
-	{
-		untouchable_start = 0;
-		untouchable = 0;
-	}
+
 	//
 	// TO-DO: make sure Goomba can interact with the world and to each of them too!
 	// 
 
-	//x += dx;
-	//y += dy;
+	x += dx;
+	y += dy;
+
+	float px, py;
+
+	((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer()->GetPosition(px, py);
+	if(state != CINTERRUPT_STATE_OPEN)
+	if (this->x < px + SOPHIA_BIG_BBOX_WIDTH && this->x + CINTERRUPT_BBOX_WIDTH >= px)
+	{
+		SetState(CINTERRUPT_STATE_OPEN);
+		playscene->AddCInterrupt_FiringList(this->x, this->y);
+	}
+		
 }
 
 void CINTERRUPT::Render()
 {
+	if (state != STATE_DIE)
+	{
+		int ani = CINTERRUPT_ANI_IDLE;
+		switch (state)
+		{
+			case CINTERRUPT_STATE_OPEN:
+				ani = CINTERRUPT_ANI_OPEN;
+				break;
+		}
+		
+		animation_set->at(ani)->Render(x, y);
 
-	int ani = CINTERRUPT_ANI;
-	if (state == CINTERRUPT_STATE_DIE) {
-		ani = CINTERRUPT_ANI_DIE;
+		//RenderBoundingBox();
 	}
-	animation_set->at(ani)->Render(x, y);
-
-	//RenderBoundingBox();
 }
 
 void CINTERRUPT::SetState(int state)
@@ -49,12 +63,12 @@ void CINTERRUPT::SetState(int state)
 	CGameObject::SetState(state);
 	switch (state)
 	{
-	case CINTERRUPT_STATE_IDLE:
-		//vx = CINTERRUPT_STATE_IDLE;
-		break;
-	case CINTERRUPT_STATE_DIE:
+	case STATE_IDLE:
 		vx = 0;
 		vy = 0;
+		break;
+	case STATE_DIE:
+		vy = DIE_PULL;
 		break;
 	}
 }

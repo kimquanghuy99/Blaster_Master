@@ -1,7 +1,6 @@
 #pragma once
 #pragma once
 #include "GameObject.h"
-#include "Brick.h"
 #include "algorithm"
 
 #define CSTUKA_WALKING_SPEED 0.05f;
