@@ -5,8 +5,8 @@
 600	textures\BM\20000(1).png	0	136	255
 400	textures\BM\map4_bank.png	255	255	255
 700	textures\BM\map3_bank.png	255	255	255
-800	textures\BM\40500.jpg	0	0	0
-60	textures\BM\40000.png	255	255	255
+800	textures\BM\m_40000.png		255	255	255
+60	textures\BM\m_m_40000.png	255	255	255
 300	textures\BM\30000.png	0	136	255
 
 #[SETTING]
