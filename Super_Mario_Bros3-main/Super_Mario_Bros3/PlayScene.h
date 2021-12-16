@@ -8,7 +8,7 @@
 #include "Eye.h"
 #include "Koopas.h"
 #include "Map.h"
-#include "CTANKWHEELS.h"
+#include "TANKWHEELS.h"
 #include "MapObj.h"
 #include "CLaserGuard.h"
 #include "CBallCarry.h"

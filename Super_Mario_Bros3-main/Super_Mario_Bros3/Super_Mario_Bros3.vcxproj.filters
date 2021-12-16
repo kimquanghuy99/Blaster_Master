@@ -132,9 +132,6 @@
     <ClInclude Include="CREDWORM.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="CTANKWHEELS.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
     <ClInclude Include="SOPHIA.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
@@ -145,6 +142,9 @@
       <Filter>Header Files\OtherObj</Filter>
     </ClInclude>
     <ClInclude Include="TANKTURRET.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TANKWHEELS.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
   </ItemGroup>
@@ -236,9 +236,6 @@
     <ClCompile Include="CREDWORM.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="CTANKWHEELS.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
     <ClCompile Include="SOPHIA.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
@@ -246,6 +243,9 @@
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="TANKTURRET.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TANKWHEELS.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
   </ItemGroup>

@@ -168,7 +168,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapObj.h" />
     <ClInclude Include="QuadTree.h" />
-    <ClInclude Include="CTANKWHEELS.h" />
+    <ClInclude Include="TANKWHEELS.h" />
     <ClInclude Include="TANKBODY.h" />
     <ClInclude Include="TANKTURRET.h" />
     <ClInclude Include="Utils.h" />
@@ -207,7 +207,7 @@
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="CTANKWHEELS.cpp" />
+    <ClCompile Include="TANKWHEELS.cpp" />
     <ClCompile Include="TANKBODY.cpp" />
     <ClCompile Include="TANKTURRET.cpp" />
     <ClCompile Include="Utils.cpp" />

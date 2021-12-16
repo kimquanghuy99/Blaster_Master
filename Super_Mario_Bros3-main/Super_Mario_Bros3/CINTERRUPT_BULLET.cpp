@@ -103,7 +103,7 @@ void CINTERRUPT_BULLET::CalcPotentialCollisions(
 
 void CINTERRUPT_BULLET::Render()
 {
-	int ani = 0;
+	/*int ani = 0;
 
 	switch (state)
 	{
@@ -114,7 +114,7 @@ void CINTERRUPT_BULLET::Render()
 		return;
 	}
 
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x, y);*/
 
 	//RenderBoundingBox();
 }
