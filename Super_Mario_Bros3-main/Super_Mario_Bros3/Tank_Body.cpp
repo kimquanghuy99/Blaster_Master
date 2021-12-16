@@ -78,6 +78,11 @@ void CTANK_BODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
+			if (dynamic_cast<CPortal*>(e->obj))
+			{
+				CPortal* p = dynamic_cast<CPortal*>(e->obj);
+				CGame::GetInstance()->SwitchScene(p->GetSceneId());
+			}
 			/*if (dynamic_cast<CINTERRUPT*>(e->obj)) // if e->obj is Goomba 
 			{
 				CINTERRUPT* Eye = dynamic_cast<CINTERRUPT*>(e->obj);
