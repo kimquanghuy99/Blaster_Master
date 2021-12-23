@@ -54,7 +54,7 @@ void CTANKBULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				isUsed = true;
 				x = SOPHIA->x;
 				y = SOPHIA->y;
-				SetSpeed(SOPHIA->nx * 0.15);
+				SetSpeed(SOPHIA->nx * 0.2);
 				SOPHIA->SetisAlreadyFired(true);
 				SOPHIA->StartFiring();
 				StartReset();

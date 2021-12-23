@@ -45,12 +45,12 @@ void CINTERRUPT::Render()
 	if (state != STATE_DIE)
 	{
 		int ani = CINTERRUPT_ANI_IDLE;
-		/*switch (state)
+		switch (state)
 		{
 			case CINTERRUPT_STATE_OPEN:
 				ani = CINTERRUPT_ANI_OPEN;
 				break;
-		}*/
+		}
 		
 		animation_set->at(ani)->Render(x, y);
 

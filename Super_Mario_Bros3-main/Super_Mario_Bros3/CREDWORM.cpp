@@ -132,7 +132,7 @@ void CREDWORM::CalcPotentialCollisions(
 
 void CREDWORM::Render()
 {
-	/*int ani = 0;
+	int ani = 0;
 
 	switch (nx)
 	{
@@ -144,7 +144,7 @@ void CREDWORM::Render()
 		break;
 	}
 
-	animation_set->at(ani)->Render(x, y);*/
+	animation_set->at(ani)->Render(x, y);
 
 	//RenderBoundingBox();
 }
