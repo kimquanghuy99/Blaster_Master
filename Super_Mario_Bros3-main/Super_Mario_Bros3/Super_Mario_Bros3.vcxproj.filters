@@ -75,9 +75,6 @@
     <ClInclude Include="QuadTree.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Eye.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Koopas.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
@@ -89,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="Sprites.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Interrupt.h">
-      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="CBallbot.h">
       <Filter>Header Files\Enemy</Filter>
@@ -111,9 +105,6 @@
     <ClInclude Include="CStuka.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Eyelet.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="CBallCarry.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
@@ -123,14 +114,8 @@
     <ClInclude Include="CTANKBULLET.h">
       <Filter>Header Files\OtherObj</Filter>
     </ClInclude>
-    <ClInclude Include="CINTERRUPT_BULLET.h">
-      <Filter>Header Files\OtherObj</Filter>
-    </ClInclude>
-    <ClInclude Include="Interrupt_Firing.h">
-      <Filter>Header Files\Event_Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="CREDWORM.h">
-      <Filter>Header Files\Enemy</Filter>
+    <ClInclude Include="CTANKWHEELS.h">
+      <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="SOPHIA.h">
       <Filter>Header Files\Player</Filter>
@@ -144,8 +129,29 @@
     <ClInclude Include="TANKTURRET.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="TANKWHEELS.h">
-      <Filter>Header Files\Player</Filter>
+    <ClInclude Include="CEvenType1.h">
+      <Filter>Header Files\Event_Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="EFFECT.h">
+      <Filter>Header Files\OtherObj</Filter>
+    </ClInclude>
+    <ClInclude Include="CEye.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyelet.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterrupt.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterruptWorm.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CBOOM.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterruptBullet.h">
+      <Filter>Header Files\OtherObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +242,9 @@
     <ClCompile Include="CREDWORM.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="CTANKWHEELS.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
     <ClCompile Include="SOPHIA.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
@@ -245,8 +254,11 @@
     <ClCompile Include="TANKTURRET.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="TANKWHEELS.cpp">
-      <Filter>Source Files\Player</Filter>
+    <ClCompile Include="EFFECT.cpp">
+      <Filter>Source Files\OtherObj</Filter>
+    </ClCompile>
+    <ClCompile Include="CBOOM.cpp">
+      <Filter>Source Files\OtherObj</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

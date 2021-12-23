@@ -1,4 +1,4 @@
-#include "CINTERRUPT_BULLET.h"
+#include "CInterruptBullet.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"
@@ -42,10 +42,10 @@ void CINTERRUPT_BULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	if (isUsed == false)
 	{
-		if (((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->CheckCInterrupt_FiringList())
+		if (((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->CheckInterruptBulletMng())
 		{
-			this->SetPosition(playscene->GetCInterrupt_FiringList()->getInterrupt_FiringPoisitionX(), playscene->GetCInterrupt_FiringList()->getInterrupt_FiringPoisitionY());
-			playscene->DeleteCInterrupt_FiringList();
+			this->SetPosition(playscene->GetInterruptBulletMng()->getCEventPoisitionX(), playscene->GetInterruptBulletMng()->getCEventPoisitionY());
+			playscene->DeleteInterruptBulletMng();
 			isUsed = true;
 			SetState(CINTERRUPT_BULLET_STATE_IDLE);
 		}
@@ -103,7 +103,7 @@ void CINTERRUPT_BULLET::CalcPotentialCollisions(
 
 void CINTERRUPT_BULLET::Render()
 {
-	/*int ani = 0;
+	int ani = 0;
 
 	switch (state)
 	{
@@ -114,7 +114,7 @@ void CINTERRUPT_BULLET::Render()
 		return;
 	}
 
-	animation_set->at(ani)->Render(x, y);*/
+	animation_set->at(ani)->Render(x, y);
 
 	//RenderBoundingBox();
 }

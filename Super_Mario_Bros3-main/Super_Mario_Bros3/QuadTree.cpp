@@ -33,7 +33,7 @@ void CQuadTree::Plit() {
 	if (listObjects.size() == 0)
 		return;
 	CGame* game = CGame::GetInstance();
-	if (cellHeight > game->GetScreenHeight() / 2 || cellWidth > game->GetScreenWidth() / 2)
+	if (cellHeight > game->GetScreenHeight() / 8 || cellWidth > game->GetScreenWidth() / 8)
 	{
 		BrachTL = new CQuadTree(cellWidth / 2, cellHeight / 2, x, y);
 		BrachTR = new CQuadTree(cellWidth / 2, cellHeight / 2, x + cellWidth / 2, y);
@@ -119,7 +119,12 @@ void CQuadTree::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_CGX680: obj = new CGX680(); break;
 	case OBJECT_TYPE_CGX680S: obj = new CGX680S(); break;
 	case OBJECT_TYPE_CSTUKA: obj = new CSTUKA(); break;
-	case OBJECT_TYPE_EYELET: obj = new CEYELET(); break;
+	case OBJECT_TYPE_EYELET: 
+	{
+		float kill_point = atoi(tokens[4].c_str());
+		obj = new CEYELET(kill_point);
+	}
+	break;
 	case OBJECT_TYPE_CINTERCRUPT: obj = new CINTERRUPT(); break;
 	
 		
@@ -224,16 +229,6 @@ void CQuadTree::GetObjects(vector<LPGAMEOBJECT>& listObject, int CamX, int CamY)
 
 void CQuadTree::Pop(vector<LPGAMEOBJECT>& listObject, int CamX, int CamY)
 {
-	unsigned int  left, top, right, bottom;
-
-	left = (CamX);
-
-	right = (CamX + CGame::GetInstance()->GetScreenWidth());
-
-	top = (CamY);
-
-	bottom = (CamY + CGame::GetInstance()->GetScreenHeight());
-
 	if (this == NULL)
 		return;
 	if (isLeaf)
@@ -245,8 +240,8 @@ void CQuadTree::Pop(vector<LPGAMEOBJECT>& listObject, int CamX, int CamY)
 			{
 				float Ox, Oy;
 				listObjects[i]->GetOriginLocation(Ox, Oy);
-				if (!inRange(Ox, Oy, CamX, CamY, CGame::GetInstance()->GetScreenWidth(), CGame::GetInstance()->GetScreenHeight()))
-					listObjects[i]->reset();
+				/*if (!inRange(Ox, Oy, CamX, CamY, CGame::GetInstance()->GetScreenWidth(), CGame::GetInstance()->GetScreenHeight()))
+					listObjects[i]->reset();*/
 				listObject.push_back(listObjects[i]);
 				listObjects[i]->SetActive(true);
 			}

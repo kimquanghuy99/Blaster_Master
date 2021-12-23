@@ -5,7 +5,7 @@
 #include "SOPHIA.h"
 #include "Game.h"
 
-#include "Eye.h"
+#include "PlayScene.h"
 #include "Portal.h"
 
 CSOPHIA::CSOPHIA(float x, float y) : CGameObject()
@@ -71,7 +71,7 @@ void CSOPHIA::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 		// block every object first!
 		x += min_tx * dx + nx * 0.4f;
-		y += min_ty * dy + ny * 0.4f;
+		//y += min_ty * dy + ny * 0.4f;
 
 		if (nx != 0) vx = 0;
 		if (ny != 0) vy = 0;
@@ -156,7 +156,7 @@ void CSOPHIA::GetBoundingBox(float& left, float& top, float& right, float& botto
 	right = x + SOPHIA_BIG_BBOX_WIDTH;
 	bottom = y + SOPHIA_BIG_BBOX_HEIGHT;
 
-	DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
+	//DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
 }
 
 /*
@@ -181,7 +181,14 @@ void CSOPHIA::CalcPotentialCollisions(
 		{
 			continue;
 		}
-
+		if (dynamic_cast<CEYELET*>(e->obj) && e->obj->GetState() == EYELET_STATE_IDLE)
+		{
+			continue;
+		}
+		if (dynamic_cast<CBOOM*>(e->obj))
+		{
+			continue;
+		}
 		if (e->t > 0 && e->t <= 1.0f)
 			collisionEvents.push_back(e);
 		else

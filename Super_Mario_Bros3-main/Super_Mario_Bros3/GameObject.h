@@ -7,7 +7,7 @@
 #include "Sprites.h"
 #include "Animations.h"
 
-#define DIE_PULL 2.0f
+#define DIE_PULL 0.2f
 #define STATE_DIE 200
 #define STATE_IDLE 100
 
@@ -58,7 +58,6 @@ public:
 	float vy;
 
 	int nx;
-	int ny;
 
 	int state;
 

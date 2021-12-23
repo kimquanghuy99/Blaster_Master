@@ -1,4 +1,4 @@
-#include "CREDWORM.h"
+#include "CInterruptWorm.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"
@@ -49,7 +49,7 @@ void CREDWORM::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		if (((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->CheckWormSpamMng())
 		{
 			SetState(CREDWORM_STATE_WALKING);
-			this->SetPosition(playscene->GetWormSpamMng()->getInterrupt_FiringPoisitionX(), playscene->GetWormSpamMng()->getInterrupt_FiringPoisitionY());
+			this->SetPosition(playscene->GetWormSpamMng()->getCEventPoisitionX(), playscene->GetWormSpamMng()->getCEventPoisitionY());
 			playscene->DeleteWormSpamMng();
 			isUsed = true;
 			
@@ -118,10 +118,10 @@ void CREDWORM::CalcPotentialCollisions(
 	for (UINT i = 0; i < coObjects->size(); i++)
 	{
 		LPCOLLISIONEVENT e = SweptAABBEx(coObjects->at(i));
-		//if (!dynamic_cast<CBrick*>(e->obj))
-		//{
-		//	continue;
-		//}
+		if (!dynamic_cast<CBrick*>(e->obj))
+		{
+			continue;
+		}
 		if (e->t > 0 && e->t <= 1.0f)
 			coEvents.push_back(e);
 		else

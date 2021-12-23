@@ -1,4 +1,4 @@
-#include "Eye.h"
+#include "CEye.h"
 CGoomba::CGoomba()
 {
 	SetState(EYE_STATE_WALKING_RIGHT);
