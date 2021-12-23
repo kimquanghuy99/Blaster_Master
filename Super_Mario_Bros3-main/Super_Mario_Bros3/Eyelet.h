@@ -40,4 +40,3 @@ public:
 	CEYELET(float kill_point);
 	virtual void SetState(int state);
 };
-

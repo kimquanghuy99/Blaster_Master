@@ -1,4 +1,4 @@
-#include "CInterrupt.h"
+#include "Interrupt.h"
 CINTERRUPT::CINTERRUPT()
 {
 	SetState(STATE_IDLE);
