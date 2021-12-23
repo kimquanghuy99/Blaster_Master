@@ -1,4 +1,4 @@
-#include "CINTERRUPT_BULLET.h"
+#include "CInterruptBullet.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"

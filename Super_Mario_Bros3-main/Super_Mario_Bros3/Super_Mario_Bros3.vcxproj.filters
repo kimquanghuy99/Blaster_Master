@@ -75,9 +75,6 @@
     <ClInclude Include="QuadTree.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Eye.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Koopas.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
@@ -89,9 +86,6 @@
     </ClInclude>
     <ClInclude Include="Sprites.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Interrupt.h">
-      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="CBallbot.h">
       <Filter>Header Files\Enemy</Filter>
@@ -111,9 +105,6 @@
     <ClInclude Include="CStuka.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Eyelet.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="CBallCarry.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
@@ -122,12 +113,6 @@
     </ClInclude>
     <ClInclude Include="CTANKBULLET.h">
       <Filter>Header Files\OtherObj</Filter>
-    </ClInclude>
-    <ClInclude Include="CINTERRUPT_BULLET.h">
-      <Filter>Header Files\OtherObj</Filter>
-    </ClInclude>
-    <ClInclude Include="CREDWORM.h">
-      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="CTANKWHEELS.h">
       <Filter>Header Files\Player</Filter>
@@ -152,6 +137,21 @@
     </ClInclude>
     <ClInclude Include="CBOOM.h">
       <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEye.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEyelet.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterrupt.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterruptWorm.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CInterruptBullet.h">
+      <Filter>Header Files\OtherObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +194,6 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="Eye.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Koopas.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
@@ -219,12 +216,6 @@
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="CStuka.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Eyelet.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Interrupt.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="CBallCarry.cpp">
@@ -258,6 +249,15 @@
       <Filter>Source Files\OtherObj</Filter>
     </ClCompile>
     <ClCompile Include="CBOOM.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEye.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEyelet.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CInterrupt.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

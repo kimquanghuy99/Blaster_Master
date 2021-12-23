@@ -34,4 +34,3 @@ public:
 	CINTERRUPT();
 	virtual void SetState(int state);
 };
-
