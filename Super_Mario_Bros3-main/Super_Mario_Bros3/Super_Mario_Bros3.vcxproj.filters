@@ -151,7 +151,7 @@
       <Filter>Header Files\OtherObj</Filter>
     </ClInclude>
     <ClInclude Include="CBOOM.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +258,7 @@
       <Filter>Source Files\OtherObj</Filter>
     </ClCompile>
     <ClCompile Include="CBOOM.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
