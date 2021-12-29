@@ -83,7 +83,7 @@ void CBALLBOT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
-			if (dynamic_cast<CBrick*>(e->obj)) // if e->obj is Goomba
+			if (dynamic_cast<CBrick*>(e->obj)) 
 			{
 				if (ny < 0 && nx == 0) 
 				{
@@ -154,15 +154,15 @@ void CBALLBOT::SetState(int state)
 		vy = 0;
 		break;
 	case CBALLBOT_STATE_FALLING:
-		vy = 2*CBALLBOT_FLYING_SPEED;
+		vy = -2*CBALLBOT_FLYING_SPEED;
 		vx = 0;
 		break;
 	case CBALLBOT_STATE_FLY_UP:
-		vy = -CBALLBOT_FLYING_SPEED;
+		vy = CBALLBOT_FLYING_SPEED;
 		vx = 0;
 		break;
 	case CBALLBOT_STATE_DIE:
-		vy = 10*DIE_PULL;
+		vy = -10*DIE_PULL;
 		break;
 	}
 }

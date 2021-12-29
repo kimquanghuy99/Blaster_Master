@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Brick.h"
 #include "SOPHIA.h"
-#include "CEye.h"
+#include "Eye.h"
 #include "Koopas.h"
 #include "Map.h"
 #include "CTANKWHEELS.h"
@@ -17,16 +17,18 @@
 #include "CGX680.h"
 #include "CGX680S.h"
 #include "CSTUKA.h"
-#include "CEyelet.h"
-#include "CInterrupt.h"
+#include "Eyelet.h"
+#include "Interrupt.h"
 #include "CTANKBULLET.h"
 #include "CEvenType1.h"
-#include "CInterruptBullet.h"
-#include "CInterruptWorm.h"
+#include "CINTERRUPT_BULLET.h"
+#include "CREDWORM.h"
 #include "TANKBODY.h"
 #include "TANKTURRET.h"
 #include "EFFECT.h"
+#include "JASON.h"
 #include "CBOOM.h"
+#include "NoCollisionObject.h"
 
 #include "Utils.h"
 #include "Game.h"
@@ -36,6 +38,13 @@
 #include "Textures.h"
 #include "Sprites.h"
 #include "Portal.h"
+#include "DF.h"
+#include "CWAVE_BULLET.h"
+#include "CGRENADE.h"
+#include "CGX_BULLET.h"
+#include "CLASER_BULLET.h"
+#include "MapCamera.h"
+#include "CSTATBAR.h"
 
 #define QUADTREE_SECTION_SETTINGS	1
 #define QUADTREE_SECTION_OBJECTS	2
@@ -54,6 +63,7 @@ class CQuadTree
 	CQuadTree* BrachBR = NULL;
 	MapObj* obj;
 	vector<LPGAMEOBJECT> listObjects;
+	
 
 	void _ParseSection_SETTINGS(string line);
 	void _ParseSection_OBJECTS(string line);
@@ -82,8 +92,10 @@ public:
 class CPlayScene : public CScene
 {
 protected:
-	CSOPHIA* player;					// A play scene has to have player, right? 
+	CSOPHIA* player;				// A play scene has to have player, right? 
+	JASON* player2;
 	vector<LPGAMEOBJECT> objects;
+	vector<LPGAMEOBJECT> secondLayer;
 	int mapHeight;
 	Map* map;
 	CQuadTree* quadtree;
@@ -91,6 +103,13 @@ protected:
 	vector<CEvenType1*> WormSpamMng;
 	vector<CEvenType1*> KaboomMng;
 	vector<CEvenType1*> BoomCarryMng;
+	vector<CEvenType1*> CGXMng;
+	vector<MapCamera*> MapCam;
+	
+	int filming_duration = 1000;
+	DWORD filming_start = 0;
+
+	int camState = 0;
 
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);
@@ -100,6 +119,7 @@ protected:
 	void _ParseSection_MAP(string line);
 	void _ParseSection_QUADTREE(string line);
 	void _ParseSection_SETTING(string line);
+	void _ParseSection_MAPCAM(string line);
 public:
 	CPlayScene(int id, LPCWSTR filePath);
 
@@ -112,7 +132,22 @@ public:
 	bool IsInside(float Ox, float Oy, float xRange, float yRange, float tx, float ty);
 
 	CSOPHIA* GetPlayer() { return player; }
+	JASON* GetPlayer2() { return player2; }
 
+	void StartFilming()
+	{
+		if (filming_start == 0)
+			filming_start = (DWORD)GetTickCount64();
+	}
+	void setCamState(int value)
+	{
+		camState = value;
+	}
+
+	int getCamState()
+	{
+		return camState;
+	}
 	void setMapheight(int height)
 	{
 		mapHeight = height;
@@ -121,6 +156,26 @@ public:
 	int getMapheight()
 	{
 		return mapHeight;
+	}
+	/////////////////CGXMng
+	void AddCGXMng(float x, float y, float vx, float vy)
+	{
+		CEvenType1* obj = new CEvenType1(x, y, 0, vx, vy);
+		this->CGXMng.push_back(obj);
+	}
+	CEvenType1* GetCGXMng()
+	{
+		return CGXMng.at(0);
+	}
+	bool CheckCGXMng()
+	{
+		if (CGXMng.size() != 0)
+			return true;
+		return false;
+	}
+	void DeleteCGXMng()
+	{
+		this->CGXMng.erase(CGXMng.begin());
 	}
 	/////////////////BoomCarryMng
 	void AddBoomCarryMng(float x, float y)

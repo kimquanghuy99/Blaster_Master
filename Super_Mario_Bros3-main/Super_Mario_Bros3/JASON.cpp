@@ -13,8 +13,6 @@ JASON::JASON(float x, float y) : CGameObject()
 	untouchable = 0;
 	SetState(JASON_STATE_IDLE);
 
-	start_x = x;
-	start_y = y;
 	this->x = x;
 	this->y = y;
 
@@ -93,26 +91,36 @@ void JASON::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void JASON::Render()
 {
-	//
-	//int ani = -1;
-	//if (state == JASON_STATE_DIE)
-	//	ani = JASON_ANI_DIE;
-	//else
-	//{
-	//	if (vx == 0)
-	//	{
-	//		if (nx > 0) ani = JASON_ANI_BIG_IDLE_RIGHT;
-	//		else ani = JASON_ANI_BIG_IDLE_LEFT;
-	//	}
-	//	else if (vx > 0)
-	//		ani = JASON_ANI_BIG_WALKING_RIGHT;
-	//	else ani = JASON_ANI_BIG_WALKING_LEFT;
 
-	//}
-	//int alpha = 255;
-	//if (untouchable) alpha = 128;
+	int ani = 0;
+	switch (state)
+	{
+	case JASON_STATE_WALKING_DOWN:
+		ani = JASON_ANI_WALK_DOWN;
+		pre_ani = ani;
+		break;
+	case JASON_STATE_WALKING_UP:
+		ani = JASON_ANI_WALK_UP;
+		pre_ani = ani;
+		break;
+	case JASON_STATE_WALKING_RIGHT:
+		ani = JASON_ANI_WALK_RIGHT;
+		pre_ani = ani;
+		break;
+	case JASON_STATE_WALKING_LEFT:
+		ani = JASON_ANI_WALK_LEFT;
+		pre_ani = ani;
+		break;
+	case JASON_STATE_IDLE:
+		ani = pre_ani + 4;
+		break;
+	}
 
-	//animation_set->at(ani)->Render(x, y, alpha);
+	int alpha = 255;
+
+	if (untouchable) alpha = 128;
+
+	animation_set->at(ani)->Render(x, y, alpha);
 
 	////RenderBoundingBox();
 }
@@ -124,11 +132,10 @@ void JASON::SetState(int state)
 	switch (state)
 	{
 	case JASON_STATE_WALKING_DOWN:
-		vy = JASON_WALKING_SPEED;
-		
+		vy = -JASON_WALKING_SPEED;
 		break;
 	case JASON_STATE_WALKING_UP:
-		vy = -JASON_WALKING_SPEED;
+		vy = JASON_WALKING_SPEED;
 		break;
 	case JASON_STATE_WALKING_RIGHT:
 		vx = JASON_WALKING_SPEED;
@@ -173,6 +180,9 @@ void JASON::CalcPotentialCollisions(
 	vector<LPGAMEOBJECT>* coObjects,
 	vector<LPCOLLISIONEVENT>& coEvents)
 {
+	CGame* game = CGame::GetInstance();
+	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
+
 	vector <LPCOLLISIONEVENT> collisionEvents;
 
 	for (UINT i = 0; i < coObjects->size(); i++)
@@ -189,6 +199,12 @@ void JASON::CalcPotentialCollisions(
 		}
 		if (dynamic_cast<CBOOM*>(e->obj))
 		{
+			continue;
+		}
+		if (dynamic_cast<CPortal*>(e->obj))
+		{
+			CPortal* portal = dynamic_cast<CPortal*>(e->obj);
+			playscene->setCamState(portal->GetCamState());
 			continue;
 		}
 		if (e->t > 0 && e->t <= 1.0f)

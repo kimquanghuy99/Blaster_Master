@@ -17,30 +17,6 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 	See scene1.txt, scene2.txt for detail format specification
 */
 
-#define SCENE_SECTION_UNKNOWN -1
-#define SCENE_SECTION_TEXTURES 2
-#define SCENE_SECTION_SPRITES 3
-#define SCENE_SECTION_ANIMATIONS 4
-#define SCENE_SECTION_ANIMATION_SETS	5
-#define SCENE_SECTION_OBJECTS	6
-#define SCENE_SECTION_MAP	7
-#define SCENE_SECTION_QUADTREE	8
-#define SCENE_SECTION_SETTING	9
-
-#define OBJECT_TYPE_SOPHIA	0
-#define OBJECT_TYPE_TANK_WHEEL	100
-#define OBJECT_TYPE_TANK_BODY	101
-#define OBJECT_TYPE_TANK_TURRET	102
-#define OBJECT_TYPE_BRICK	1
-#define OBJECT_TYPE_CTANKBULLET	2
-#define OBJECT_TYPE_CINTERCRUPT_BULLET	12
-#define OBJECT_TYPE_RED_WORM	13
-#define OBJECT_TYPE_EFFECT	14
-#define OBJECT_TYPE_CBOOM	15
-
-#define OBJECT_TYPE_PORTAL	50
-
-#define MAX_SCENE_LINE 1024
 
 void CPlayScene::Load()
 {
@@ -66,6 +42,9 @@ void CPlayScene::Load()
 		if (line == "[ANIMATIONS]") {
 			section = SCENE_SECTION_ANIMATIONS; continue;
 		}
+		if (line == "[MAPCAM]") {
+			section = SCENE_SECTION_MAPCAM; continue;
+		}
 		if (line == "[MAP]") { section = SCENE_SECTION_MAP; continue; }
 		if (line == "[ANIMATION_SETS]") {
 			section = SCENE_SECTION_ANIMATION_SETS; continue;
@@ -88,6 +67,7 @@ void CPlayScene::Load()
 		{
 		case SCENE_SECTION_MAP: _ParseSection_MAP(line); break;
 		case SCENE_SECTION_SETTING: _ParseSection_SETTING(line); break;
+		case SCENE_SECTION_MAPCAM: _ParseSection_MAPCAM(line); break;		
 		case SCENE_SECTION_TEXTURES: _ParseSection_TEXTURES(line); break;
 		case SCENE_SECTION_SPRITES: _ParseSection_SPRITES(line); break;
 		case SCENE_SECTION_ANIMATIONS: _ParseSection_ANIMATIONS(line); break;
@@ -103,6 +83,16 @@ void CPlayScene::Load()
 
 	DebugOut(L"[INFO] Done loading scene resources %s\n", sceneFilePath);
 }
+
+void CPlayScene::_ParseSection_MAPCAM(string line)
+{
+	vector<string> tokens = split(line);
+	if (tokens.size() < 4) return;
+	MapCamera* mCam = new MapCamera();
+	mCam->SetCam(atoi(tokens[0].c_str()), atoi(tokens[1].c_str()), atoi(tokens[2].c_str()), atoi(tokens[3].c_str()));
+	MapCam.push_back(mCam);
+}
+
 
 void CPlayScene::_ParseSection_QUADTREE(string line)
 {
@@ -247,15 +237,33 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		DebugOut(L"[INFO] Player object created!\n");
 
 		break;
+	case OBJECT_TYPE_JASON:
+		if (player2 != NULL)
+		{
+			DebugOut(L"[ERROR] JASON object was created before!\n");
+			return;
+		}
+		obj = new JASON(x, getMapheight() - y);
+
+		player2 = (JASON*)obj;
+
+		DebugOut(L"[INFO] Player object created!\n");
+
+		break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(); break;
 	case OBJECT_TYPE_CBOOM: obj = new CBOOM(); break;
 	case OBJECT_TYPE_CTANKBULLET: obj = new CTANKBULLET(); break;
-		
+	case OBJECT_TYPE_NoCollisionObject: obj = new CNoCollisionObject(); break;
+	case OBJECT_TYPE_STATBAR: obj = new CSTATBAR(atoi(tokens[4].c_str())); break;
 	case OBJECT_TYPE_TANK_WHEEL:
 	{
 		float part = atof(tokens[4].c_str());
 		obj = new TANKWHEEL(part);
-		
+	}
+	break;
+	case OBJECT_TYPE_CLASER_BULLET:
+	{
+		obj = new CLASER_BULLET();
 	}
 	break;
 	case OBJECT_TYPE_TANK_BODY:
@@ -263,15 +271,32 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		obj = new TANKBODY();
 	}
 	break;
+	case OBJECT_TYPE_JASON_BULLET_1:
+	{
+		obj = new CWAVE_BULLET();
+	}
+	break;
+
 	case OBJECT_TYPE_TANK_TURRET:
 	{
 		obj = new TANKTURRET();
 	}
 	break;
+
 	case OBJECT_TYPE_EFFECT:
 	{
 		float time = atof(tokens[4].c_str());
 		obj = new EFFECT(time);
+	}
+	break;
+	case OBJECT_TYPE_JASON_GRENADE:
+	{
+		obj = new CGRENADE();
+	}
+	break;
+	case OBJECT_TYPE_CGX_BULLET:
+	{
+		obj = new CGX_BULLET();
 	}
 	break;
 	case OBJECT_TYPE_PORTAL:
@@ -279,8 +304,10 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		float r = atof(tokens[4].c_str());
 		float b = atof(tokens[5].c_str());
 		int scene_id = atoi(tokens[6].c_str());
-		obj = new CPortal(x, y, r, b, scene_id);
+		int camState = atoi(tokens[7].c_str());
+		obj = new CPortal(x, y, r, b, scene_id, camState);
 	}
+	break;
 	case OBJECT_TYPE_CINTERCRUPT_BULLET: obj = new CINTERRUPT_BULLET(); break;
 	case OBJECT_TYPE_RED_WORM: obj = new CREDWORM(); break;
 		
@@ -296,8 +323,19 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 
-	if (obj != NULL )
+	if (obj != NULL)
 	{
+		if (object_type == OBJECT_TYPE_NoCollisionObject || object_type == OBJECT_TYPE_STATBAR)
+		{
+			
+			if(object_type != OBJECT_TYPE_STATBAR)
+				obj->SetPosition(x, getMapheight() - y);
+			else 
+				obj->SetPosition(x, y);
+			obj->SetAnimationSet(ani_set);
+			secondLayer.push_back(obj);
+			return;
+		}
 		if(object_type != OBJECT_TYPE_SOPHIA)
 		obj->SetPosition(x, getMapheight() - y);
 		obj->SetAnimationSet(ani_set);
@@ -353,32 +391,77 @@ bool CPlayScene::IsInside(float Ox, float Oy, float xRange, float yRange, float 
 
 void CPlayScene::Update(DWORD dt)
 {
+	CGame* game = CGame::GetInstance();
+
+	if ((DWORD)GetTickCount64() - filming_start >= filming_duration && filming_start != 0)
+	{
+		filming_start = 0;
+		game->setFilming(false);
+	}
+
+	if (MapCam.size() != 0 && camState < MapCam.size())
+	{
+		int sX, sY, eX, eY;
+
+		MapCam.at(camState)->GetCam(sX, sY, eX, eY);
+
+		game->SetStartEnd(sX, sY, eX, eY);
+	}
+
+
 	// We know that SOPHIA is the first object in the list hence we won't add him into the colliable object list
 	// TO-DO: This is a "dirty" way, need a more organized way 
 
 	// skip the rest if scene was already unloaded (SOPHIA::Update might trigger PlayScene::Unload)
-	if (player == NULL) return;
+	if (player == NULL && player2 == NULL) return;
 
 	// Update camera to follow mario
 	float cx, cy;
 
-	player->GetPosition(cx, cy);
+	if(player)
+		player->GetPosition(cx, cy);
+	else
+		player2->GetPosition(cx, cy);
 
 	cy = cy;
 
 	/*DebugOut(L"Y: la %d %f  \n", CGame::GetInstance()->GetCurrentScene()->getMapheight(), cy);*/
 	
-	CGame* game = CGame::GetInstance();
+	
 
 	cx -= game->GetScreenWidth() / 2;
 	cy -= game->GetScreenHeight() / 2;
 
-	if (cx < 0)
+	if (!game->GetFilming())
 	{
-		cx = 0;
+		if (cx + game->GetScreenWidth() > game->GetendX())
+		{
+			cx = game->GetendX() - game->GetScreenWidth();
+		}
+		if (cy + game->GetScreenHeight() > game->GetendY())
+		{
+			cy = game->GetendY() - game->GetScreenHeight();
+		}
+		if (cx < game->GetstartX())
+		{
+			cx = game->GetstartX();
+		}
+		if (cy < game->GetstartY())
+		{
+			cy = game->GetstartY();
+		}
 	}
 
-	CGame::GetInstance()->SetCamPos(cx, cy);
+	if (cx + game->GetScreenWidth() > game->GetMapX())
+	{
+		cx = game->GetMapX() - game->GetScreenWidth();
+	}
+	if (cy + game->GetScreenHeight() > game->GetMapY())
+	{
+		cy = game->GetMapY() - game->GetScreenHeight();
+	}
+
+	game->SetCamPos(cx, cy);
 
 	vector<LPGAMEOBJECT> coObjects;
 
@@ -415,8 +498,13 @@ void CPlayScene::Render()
 	{
 		this->map->Render();
 	}
+
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
+
+	for (int i = 0; i < secondLayer.size(); i++)
+		secondLayer[i]->Render();
+	
 }
 
 /*
@@ -426,9 +514,17 @@ void CPlayScene::Unload()
 {
 	objects.clear();
 
+	MapCam.clear();
+
+	secondLayer.clear();
+
 	player = NULL;
 
+	player2 = NULL;
+
 	delete map;
+
+	setCamState(0);
 
 	map = nullptr;
 
@@ -444,29 +540,84 @@ void CPlayScene::Unload()
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
 	//DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
+	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 
-	CSOPHIA* mario = ((CPlayScene*)scence)->GetPlayer();
-	switch (KeyCode)
+	if (((CPlayScene*)scence)->GetPlayer())
 	{
-	case DIK_SPACE:
-		mario->SetState(SOPHIA_STATE_JUMP);
-		break;
-	case DIK_B:
-		mario->Reset();
-		break;
-	case DIK_A:
-		mario->SetisFiring(true);	
-		break;
+		CSOPHIA* player = ((CPlayScene*)scence)->GetPlayer();
+		switch (KeyCode)
+		{
+		case DIK_SPACE:
+			if (!player->GetIsJumping())
+			{
+				player->SetState(SOPHIA_STATE_JUMP);
+				player->SetIsJumping(true);
+			}
+			break;
+		case DIK_B:
+			player->Reset();
+			break;
+		case DIK_A:
+			player->SetisFiring(true);
+			break;
+		case DIK_C:
+			playscene->setCamState(playscene->getCamState() + 1);
+			break;
+		case DIK_UP:
+			player->SetisAimingUp(true);
+			break;
+		}
+	}
+
+	else {
+		JASON* player = ((CPlayScene*)scence)->GetPlayer2();
+		switch (KeyCode)
+		{
+		case DIK_SPACE:
+			player->SetState(SOPHIA_STATE_JUMP);
+			break;
+		case DIK_B:
+			player->Reset();
+			break;
+		case DIK_A:
+			player->SetisFiring(true);
+			break;
+		}
 	}
 }
 
 void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 {
-	CSOPHIA* mario = ((CPlayScene*)scence)->GetPlayer();
+	CGame* game = CGame::GetInstance();
+	if (((CPlayScene*)scence)->GetPlayer())
+	{
+		CSOPHIA* player = ((CPlayScene*)scence)->GetPlayer();
 		switch (KeyCode)
 		{
 		case DIK_A:
-			mario->SetisFiring(false);
+			player->SetisFiring(false);
+			break;
+		case DIK_R:
+			CGame::GetInstance()->SwitchScene(2);
+			break;
+		case DIK_H:
+			CGame::GetInstance()->SwitchScene(1);
+			break;
+		case DIK_UP:
+			player->SetisAimingUp(false);
+			break;
+		case DIK_V:
+			game->setheath(game->Getheath() - 100);
+			break;
+		}
+	}
+		
+	else {
+		JASON* player = ((CPlayScene*)scence)->GetPlayer2();
+		switch (KeyCode)
+		{
+		case DIK_A:
+			player->SetisFiring(false);
 			break;
 		case DIK_R:
 			CGame::GetInstance()->SwitchScene(2);
@@ -475,23 +626,44 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 			CGame::GetInstance()->SwitchScene(1);
 			break;
 		}
+	}
+		
 }
 
 void CPlayScenceKeyHandler::KeyState(BYTE* states)
 {
 	CGame* game = CGame::GetInstance();
-	CSOPHIA* mario = ((CPlayScene*)scence)->GetPlayer();
 
-	// disable control key when SOPHIA die 
-	if (mario->GetState() == SOPHIA_STATE_DIE) return;
-	if (game->IsKeyDown(DIK_RIGHT))
-		mario->SetState(SOPHIA_STATE_WALKING_RIGHT);
-	else if (game->IsKeyDown(DIK_LEFT))
-		mario->SetState(SOPHIA_STATE_WALKING_LEFT);
-	else if (game->IsKeyDown(DIK_DOWN))
-		mario->SetState(SOPHIA_STATE_WALKING_DOWN);
-	else if (game->IsKeyDown(DIK_UP))
-		mario->SetState(SOPHIA_STATE_WALKING_UP);
-	else
-		mario->SetState(SOPHIA_STATE_IDLE);
+	if (((CPlayScene*)scence)->GetPlayer())
+	{
+		CSOPHIA* player = ((CPlayScene*)scence)->GetPlayer();
+		// disable control key when SOPHIA die 
+		if (player->GetState() == SOPHIA_STATE_DIE) return;
+		if (game->IsKeyDown(DIK_RIGHT))
+			player->SetState(SOPHIA_STATE_WALKING_RIGHT);
+		else if (game->IsKeyDown(DIK_LEFT))
+			player->SetState(SOPHIA_STATE_WALKING_LEFT);
+		else
+			player->SetState(SOPHIA_STATE_IDLE);
+	}
+
+	else {
+		JASON* player = ((CPlayScene*)scence)->GetPlayer2();
+		// disable control key when SOPHIA die 
+		if (player->GetState() == SOPHIA_STATE_DIE) return;
+		if (game->IsKeyDown(DIK_RIGHT))
+			player->SetState(SOPHIA_STATE_WALKING_RIGHT);
+		else if (game->IsKeyDown(DIK_LEFT))
+			player->SetState(SOPHIA_STATE_WALKING_LEFT);
+		else if (game->IsKeyDown(DIK_DOWN))
+			player->SetState(SOPHIA_STATE_WALKING_DOWN);
+		else if (game->IsKeyDown(DIK_UP))
+			player->SetState(SOPHIA_STATE_WALKING_UP);
+		else if (game->IsKeyDown(DIK_Q))
+			player->SwitchWeapon();
+		else
+			player->SetState(SOPHIA_STATE_IDLE);
+	}
+
+
 }

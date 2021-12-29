@@ -1,4 +1,4 @@
-#include "CInterruptBullet.h"
+#include "CINTERRUPT_BULLET.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"
@@ -68,7 +68,7 @@ void CINTERRUPT_BULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
 			LPCOLLISIONEVENT e = coEventsResult[i];
-			if (dynamic_cast<CBrick*>(e->obj)) // if e->obj is Goomba
+			if (dynamic_cast<CBrick*>(e->obj)) 
 			{
 				SetState(CINTERRUPT_BULLET_STATE_DIE);
 				playscene->AddWormSpamMng(this->x, this->y);
@@ -125,7 +125,7 @@ void CINTERRUPT_BULLET::SetState(int state)
 	switch (state)
 	{
 	case CINTERRUPT_BULLET_STATE_IDLE:
-		vy = CINTERRUPT_BULLET_SPEED;
+		vy = -CINTERRUPT_BULLET_SPEED;
 		break;
 
 	}
