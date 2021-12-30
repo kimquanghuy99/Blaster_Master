@@ -22,9 +22,6 @@
     <Filter Include="Header Files\Enemy">
       <UniqueIdentifier>{37474437-e523-451e-a601-cdae077ff8b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OtherObj">
-      <UniqueIdentifier>{b5fc293a-c591-46fb-b5b8-98c781fa5ae5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{dce15ad0-38da-4ebf-b4e6-b50e4d3fea83}</UniqueIdentifier>
     </Filter>
@@ -37,8 +34,11 @@
     <Filter Include="Source Files\OtherObj">
       <UniqueIdentifier>{77e3cbde-df3d-4e92-9efc-6997792fdcf4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Event_Buffer">
+    <Filter Include="Header Files\CEvent">
       <UniqueIdentifier>{4de27295-4212-45ac-a135-83fdc33da32f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OBJ">
+      <UniqueIdentifier>{b5fc293a-c591-46fb-b5b8-98c781fa5ae5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +82,10 @@
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Brick.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="Sprites.h">
       <Filter>Header Files\System</Filter>
@@ -127,10 +127,10 @@
       <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="DF.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="EFFECT.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="JASON.h">
       <Filter>Header Files\Player</Filter>
@@ -157,40 +157,40 @@
       <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="Items.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="Boom.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="BrickCover.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="Grenade.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="GXBullet.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="InterruptBullet.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="LaserBullet.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="HeathPoint.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="SophiaBullet.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="WaveBullet.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
-      <Filter>Header Files\OtherObj</Filter>
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="CEvent.h">
-      <Filter>Header Files\Event_Buffer</Filter>
+      <Filter>Header Files\CEvent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
