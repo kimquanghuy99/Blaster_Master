@@ -292,7 +292,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	case OBJECT_TYPE_TANK_TURRET:
 	{
-		obj = new TANKTURRET();
+		obj = new SOPHIATURRET();
 	}
 	break;
 	case OBJECT_TYPE_TANKDOOR:
