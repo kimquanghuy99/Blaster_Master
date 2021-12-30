@@ -200,23 +200,23 @@
     <ClInclude Include="Textures.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CBallCarry.cpp" />
+    <ClCompile Include="BallCarry.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CBallbot.cpp" />
+    <ClCompile Include="Ballbot.cpp" />
     <ClCompile Include="Boom.cpp" />
-    <ClCompile Include="CBREAKABLE_BRICK.cpp" />
-    <ClCompile Include="CDrap.cpp" />
+    <ClCompile Include="BrickCover.cpp" />
+    <ClCompile Include="Drap.cpp" />
     <ClCompile Include="Grenade.cpp" />
-    <ClCompile Include="CGX680.cpp" />
-    <ClCompile Include="CGX680S.cpp" />
+    <ClCompile Include="GX680.cpp" />
+    <ClCompile Include="GX680S.cpp" />
     <ClCompile Include="GXBullet.cpp" />
     <ClCompile Include="InterruptBullet.cpp" />
-    <ClCompile Include="CLaserGuard.cpp" />
+    <ClCompile Include="LaserGuard.cpp" />
     <ClCompile Include="LaserBullet.cpp" />
-    <ClCompile Include="CREDWORM.cpp" />
+    <ClCompile Include="InterruptWorm.cpp" />
     <ClCompile Include="HeathPoint.cpp" />
-    <ClCompile Include="CStuka.cpp" />
+    <ClCompile Include="Stuka.cpp" />
     <ClCompile Include="SophiaBullet.cpp" />
     <ClCompile Include="SophiaDoor.cpp" />
     <ClCompile Include="WaveBullet.cpp" />

@@ -239,38 +239,14 @@
     <ClCompile Include="Brick.cpp">
       <Filter>Source Files\OBJ</Filter>
     </ClCompile>
-    <ClCompile Include="CBallbot.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrap.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="CGX680.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="CGX680S.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="CLaserGuard.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="CStuka.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Eyelet.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Interrupt.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="CBallCarry.cpp">
-      <Filter>Source Files\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="MapObj.cpp">
       <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="CREDWORM.cpp">
-      <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="SOPHIA.cpp">
       <Filter>Source Files\Player</Filter>
@@ -329,11 +305,35 @@
     <ClCompile Include="Items.cpp">
       <Filter>Source Files\OBJ</Filter>
     </ClCompile>
-    <ClCompile Include="CBREAKABLE_BRICK.cpp">
-      <Filter>Source Files\OBJ</Filter>
-    </ClCompile>
     <ClCompile Include="SophiaBullet.cpp">
       <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Ballbot.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BallCarry.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Drap.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GX680.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GX680S.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserGuard.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="InterruptWorm.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Stuka.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickCover.cpp">
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
