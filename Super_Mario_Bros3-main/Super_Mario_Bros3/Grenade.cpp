@@ -125,7 +125,7 @@ void CGRENADE::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			{
 				if (playscene->IsInside(x - 50, y - 50, x + 50, y + 50, (e->obj)->GetPositionX(), (e->obj)->GetPositionY()))
 				{
-					(e->obj)->setheath((e->obj)->Getheath() - TANK_BULLET_DMG);
+					(e->obj)->setheath((e->obj)->Getheath() - SOPHIA_BULLET_DMG);
 				}
 			}
 		}

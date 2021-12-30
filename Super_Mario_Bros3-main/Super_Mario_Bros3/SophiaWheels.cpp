@@ -21,8 +21,8 @@ void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	switch(part)
 	{
-	case TANKWHEEL_LEFT_WHEEL:
-			x = SOPHIA->x + TANKWHEEL_WHEEL_DISTANT_X_1;
+	case SOPHIAWHEEL_LEFT_WHEEL:
+			x = SOPHIA->x + SOPHIAWHEEL_WHEEL_DISTANT_X_1;
 			if (SOPHIA->GetisAimingUp())
 			{
 				if (nx > 0)
@@ -31,8 +31,8 @@ void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				}
 			}
 			break;
-	case TANKWHEEL_RIGHT_WHEEL:
-			x = SOPHIA->x + TANKWHEEL_WHEEL_DISTANT_X_2;
+	case SOPHIAWHEEL_RIGHT_WHEEL:
+			x = SOPHIA->x + SOPHIAWHEEL_WHEEL_DISTANT_X_2;
 			if (SOPHIA->GetisAimingUp())
 			{
 				if (nx > 0)
@@ -44,7 +44,7 @@ void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			break;
 	}
 
-	y = SOPHIA->y + TANKWHEEL_WHEEL_DISTANT_Y;
+	y = SOPHIA->y + SOPHIAWHEEL_WHEEL_DISTANT_Y;
 
 	float Py, Px;
 	SOPHIA->GetSpeed(Px, Py);
@@ -70,10 +70,10 @@ void SOPHIAWHEEL::Render()
 	{
 		switch (part)
 		{
-		case TANKWHEEL_RIGHT_WHEEL:
+		case SOPHIAWHEEL_RIGHT_WHEEL:
 			ani = WHEELING_ANI_RIGHT;
 			break;
-		case TANKWHEEL_LEFT_WHEEL:
+		case SOPHIAWHEEL_LEFT_WHEEL:
 			ani = WHEELING_ANI_RIGHT;
 			break;
 		}
@@ -83,10 +83,10 @@ void SOPHIAWHEEL::Render()
 	{
 		switch (part)
 		{
-		case TANKWHEEL_RIGHT_WHEEL:
+		case SOPHIAWHEEL_RIGHT_WHEEL:
 			ani = WHEELING_ANI_LEFT;
 			break;
-		case TANKWHEEL_LEFT_WHEEL:
+		case SOPHIAWHEEL_LEFT_WHEEL:
 			ani = WHEELING_ANI_LEFT;
 			break;
 		}
@@ -94,7 +94,7 @@ void SOPHIAWHEEL::Render()
 
 	else if(SOPHIA->vx == 0)
 	{
-		if (part != TANKWHEEL_TURRET)
+		if (part != SOPHIAWHEEL_TURRET)
 			ani = WHEELING_ANI_IDLE;
 		else
 			ani = pre_ani;

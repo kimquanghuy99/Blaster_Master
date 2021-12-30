@@ -48,13 +48,13 @@ void JASONSMALL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		CalcPotentialCollisions(coObjects, coEvents);
 
 	// reset untouchable timer if untouchable time has passed
-	if (GetTickCount() - untouchable_start > MINI_JASON_UNTOUCHABLE_TIME)
+	if (GetTickCount() - untouchable_start > SMALL_JASON_UNTOUCHABLE_TIME)
 	{
 		untouchable_start = 0;
 		untouchable = 0;
 	}
 
-	if (isAlreadyFired && (DWORD)GetTickCount64() - firing_start > MINI_JASON_FIRING_DELAY_TIME)
+	if (isAlreadyFired && (DWORD)GetTickCount64() - firing_start > SMALL_JASON_FIRING_DELAY_TIME)
 	{
 		SetisAlreadyFired(false);
 		SetisIsFiring(0);
@@ -116,11 +116,11 @@ void JASONSMALL::Render()
 		{
 			if (state == MINI_JASON_STATE_WALKING_RIGHT)
 			{
-				ani = MINI_JASON_ANI_WALKING_RIGHT;
+				ani = SMALL_JASON_ANI_WALKING_RIGHT;
 				pre_ani = ani;
 			}
 			if (state == MINI_JASON_STATE_WALKING_LEFT) {
-				ani = MINI_JASON_ANI_WALKING_LEFT;
+				ani = SMALL_JASON_ANI_WALKING_LEFT;
 				pre_ani = ani;
 			}
 		}
@@ -173,8 +173,8 @@ void JASONSMALL::GetBoundingBox(float& left, float& top, float& right, float& bo
 	{
 		left = x;
 		top = y;
-		right = x + MINI_JASON_BBOX_WIDTH;
-		bottom = y + MINI_JASON_BBOX_HEIGHT;
+		right = x + SMALL_JASON_BBOX_WIDTH;
+		bottom = y + SMALL_JASON_BBOX_HEIGHT;
 
 		//DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
 	}

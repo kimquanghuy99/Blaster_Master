@@ -40,7 +40,7 @@ void SOPHIABODY::Render()
 
 	int ani = 0;
 
-	ani = TANKBODY_ANI_IDLE;
+	ani = SOPHIABODY_ANI_IDLE;
 
 	int alpha = 255;
 	if (SOPHIA->getUntouchable()) alpha = 128;

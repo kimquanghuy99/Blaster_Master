@@ -250,7 +250,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		DebugOut(L"[INFO] Player object created!\n");
 
 		break;
-	case OBJECT_TYPE_MINI_JASON:
+	case OBJECT_TYPE_JASON_SMALL:
 		if (player3 != NULL)
 		{
 			DebugOut(L"[ERROR] MINI_JASON object was created before!\n");
@@ -265,15 +265,15 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(); break;
 	case OBJECT_TYPE_CBOOM: obj = new CBOOM(); break;
-	case OBJECT_TYPE_CTANKBULLET: obj = new CTANKBULLET(); break;
-	case OBJECT_TYPE_NoCollisionObject: obj = new CNoCollisionObject(); break;
-	case OBJECT_TYPE_STATBAR: obj = new CSTATBAR(atoi(tokens[4].c_str())); break;
+	case OBJECT_TYPE_SOPHIABULLET: obj = new CTANKBULLET(); break;
+	case OBJECT_TYPE_BOUNDINGBOX: obj = new CNoCollisionObject(); break;
+	case OBJECT_TYPE_HEATHPOINT: obj = new CSTATBAR(atoi(tokens[4].c_str())); break;
 	case OBJECT_TYPE_ITEMS:
 	{
 		obj = new Items(0);
 	}
 	break;
-	case OBJECT_TYPE_TANK_WHEEL:
+	case OBJECT_TYPE_SOPHIA_WHEEL:
 	{
 		float part = atof(tokens[4].c_str());
 		obj = new SOPHIAWHEEL(part);
@@ -284,7 +284,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		obj = new CLASER_BULLET();
 	}
 	break;
-	case OBJECT_TYPE_TANK_BODY:
+	case OBJECT_TYPE_SOPHIA_BODY:
 	{
 		obj = new SOPHIABODY();
 	}
@@ -295,12 +295,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	}
 	break;
 
-	case OBJECT_TYPE_TANK_TURRET:
+	case OBJECT_TYPE_SOPHIA_TURRET:
 	{
 		obj = new SOPHIATURRET();
 	}
 	break;
-	case OBJECT_TYPE_TANKDOOR:
+	case OBJECT_TYPE_SOPHIADOOR:
 	{
 		obj = new SOPHIADOOR();
 	}
@@ -331,7 +331,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	}
 	break;
 	case OBJECT_TYPE_CINTERCRUPT_BULLET: obj = new CINTERRUPT_BULLET(); break;
-	case OBJECT_TYPE_RED_WORM: obj = new CREDWORM(); break;
+	case OBJECT_TYPE_INTERRUPT_WORM: obj = new CREDWORM(); break;
 		
 	break;
 	
@@ -347,10 +347,10 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	if (obj != NULL)
 	{
-		if (object_type == OBJECT_TYPE_NoCollisionObject || object_type == OBJECT_TYPE_STATBAR)
+		if (object_type == OBJECT_TYPE_BOUNDINGBOX || object_type == OBJECT_TYPE_HEATHPOINT)
 		{
 			
-			if(object_type != OBJECT_TYPE_STATBAR)
+			if(object_type != OBJECT_TYPE_HEATHPOINT)
 				obj->SetPosition(x, getMapheight() - y);
 			else 
 				obj->SetPosition(x, y);
