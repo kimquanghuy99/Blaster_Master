@@ -1,4 +1,4 @@
-#include "CGX_BULLET.h"
+#include "GXBullet.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"

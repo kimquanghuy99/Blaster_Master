@@ -1,4 +1,4 @@
-#include "NoCollisionObject.h"
+#include "BoundingBox.h"
 #include"Game.h"
 #include"Scene.h"
 

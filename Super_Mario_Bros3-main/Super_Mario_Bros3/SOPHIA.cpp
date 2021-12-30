@@ -10,6 +10,7 @@
 
 CSOPHIA::CSOPHIA(float x, float y) : CGameObject()
 {
+
 	untouchable = 0;
 	SetState(SOPHIA_STATE_IDLE);
 
@@ -24,12 +25,17 @@ void CSOPHIA::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	int id = CGame::GetInstance()->GetCurrentScene()->GetId();
 	CGame* game = CGame::GetInstance();
+	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 	// Calculate dx, dy 
 	CGameObject::Update(dt);
 
 	// Simple fall down
-	//if(!game->GetFilming())
+	if(playscene->getpiloting())
 	vy -= SOPHIA_GRAVITY * dt;
+	else {
+		vx = 0;
+		vy = 0;
+	}
 
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
@@ -153,13 +159,16 @@ void CSOPHIA::SetState(int state)
 
 void CSOPHIA::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x;
-	top = y;
+	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
+	//if (playscene->getpiloting()) {
+		left = x;
+		top = y;
+		right = x + SOPHIA_BIG_BBOX_WIDTH;
+		bottom = y + SOPHIA_BIG_BBOX_HEIGHT;
 
-	right = x + SOPHIA_BIG_BBOX_WIDTH;
-	bottom = y + SOPHIA_BIG_BBOX_HEIGHT;
-
-	//DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
+		//DebugOut(L"L T R B %f %f %f %f  \n", left, top, right, bottom);
+	//}
+	
 }
 
 /*

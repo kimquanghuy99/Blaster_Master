@@ -8,7 +8,7 @@
 #include "Eye.h"
 #include "Koopas.h"
 #include "Map.h"
-#include "CTANKWHEELS.h"
+#include "SophiaWheels.h"
 #include "MapObj.h"
 #include "CLaserGuard.h"
 #include "CBallCarry.h"
@@ -19,16 +19,16 @@
 #include "CSTUKA.h"
 #include "Eyelet.h"
 #include "Interrupt.h"
-#include "CTANKBULLET.h"
-#include "CEvenType1.h"
-#include "CINTERRUPT_BULLET.h"
+#include "SophiaBullet.h"
+#include "CEvent.h"
+#include "InterruptBullet.h"
 #include "CREDWORM.h"
-#include "TANKBODY.h"
-#include "TANKTURRET.h"
+#include "SophiaBody.h"
+#include "SophiaTurret.h"
 #include "EFFECT.h"
 #include "JASON.h"
-#include "CBOOM.h"
-#include "NoCollisionObject.h"
+#include "Boom.h"
+#include "BoundingBox.h"
 
 #include "Utils.h"
 #include "Game.h"
@@ -39,12 +39,14 @@
 #include "Sprites.h"
 #include "Portal.h"
 #include "DF.h"
-#include "CWAVE_BULLET.h"
-#include "CGRENADE.h"
-#include "CGX_BULLET.h"
-#include "CLASER_BULLET.h"
+#include "WaveBullet.h"
+#include "Grenade.h"
+#include "GXBullet.h"
+#include "LaserBullet.h"
 #include "MapCamera.h"
-#include "CSTATBAR.h"
+#include "HeathPoint.h"
+#include "JasonSmall.h"
+#include "SophiaDoor.h"
 
 #define QUADTREE_SECTION_SETTINGS	1
 #define QUADTREE_SECTION_OBJECTS	2
@@ -94,6 +96,7 @@ class CPlayScene : public CScene
 protected:
 	CSOPHIA* player;				// A play scene has to have player, right? 
 	JASON* player2;
+	MINI_JASON* player3;
 	vector<LPGAMEOBJECT> objects;
 	vector<LPGAMEOBJECT> secondLayer;
 	int mapHeight;
@@ -110,6 +113,8 @@ protected:
 	DWORD filming_start = 0;
 
 	int camState = 0;
+
+	bool piloting = true;
 
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);
@@ -133,7 +138,17 @@ public:
 
 	CSOPHIA* GetPlayer() { return player; }
 	JASON* GetPlayer2() { return player2; }
+	MINI_JASON* GetPlayer3() { return player3; }
 
+	void setpiloting(int value)
+	{
+		piloting = value;
+	}
+
+	int getpiloting()
+	{
+		return piloting;
+	}
 	void StartFilming()
 	{
 		if (filming_start == 0)
