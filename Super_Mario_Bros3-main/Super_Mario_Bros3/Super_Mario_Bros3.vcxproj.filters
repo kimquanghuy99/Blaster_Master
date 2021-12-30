@@ -269,25 +269,13 @@
     <ClCompile Include="CREDWORM.cpp">
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="CTANKWHEELS.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
     <ClCompile Include="SOPHIA.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="TANKBODY.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="TANKTURRET.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="EFFECT.cpp">
       <Filter>Source Files\OtherObj</Filter>
     </ClCompile>
     <ClCompile Include="JASON.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="MINI_JASON.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="sound.cpp">
@@ -324,6 +312,18 @@
       <Filter>Source Files\OtherObj</Filter>
     </ClCompile>
     <ClCompile Include="SophiaDoor.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SophiaWheels.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="JasonSmall.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SophiaBody.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SophiaTurret.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
   </ItemGroup>
