@@ -22,7 +22,15 @@ void CDRAP::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
-
+	if (!spammed && state == STATE_DIE)
+	{
+		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddKaboomMng(x, y);
+		int chance = rand() % 100;
+		srand(time(NULL));
+		if (chance >= 70)
+			playscene->AddItemsMng(x, y, 0);
+		spammed = true;
+	}
 
 	if (attacking != 0 && (DWORD)GetTickCount64() - attacking >= CDRAP_ATTACKING_TIME)
 	{
@@ -79,6 +87,12 @@ void CDRAP::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			{
 				if (ny == 0 && nx != 0)
 					vx = 0;
+			}
+			CGame* game = CGame::GetInstance();
+			if (dynamic_cast<JASON*>(e->obj) && !playscene->GetPlayer2()->getUntouchable())
+			{
+				playscene->GetPlayer2()->StartUntouchable();
+				game->setheath(game->Getheath() - 100);
 			}
 		}
 	}

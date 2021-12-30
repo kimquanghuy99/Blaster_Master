@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "DF.h"
 
-class JASONSMALL : public CGameObject
+class MINI_JASON : public CGameObject
 {
 	int level;
 	int untouchable;
@@ -24,7 +24,7 @@ class JASONSMALL : public CGameObject
 	bool isAlreadyFired = 0;
 
 public:
-	JASONSMALL(float x = 0.0f, float y = 0.0f);
+	MINI_JASON(float x = 0.0f, float y = 0.0f);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
 	void CalcPotentialCollisions(vector<LPGAMEOBJECT>* coObjects, vector<LPCOLLISIONEVENT>& coEvents);

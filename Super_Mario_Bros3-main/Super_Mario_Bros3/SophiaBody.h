@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "DF.h"
 
-class SOPHIABODY : public CGameObject
+class TANKBODY : public CGameObject
 {
 	int part = 0;
 	int pre_ani = 0;
@@ -12,7 +12,7 @@ class SOPHIABODY : public CGameObject
 	void CalcPotentialCollisions(vector<LPGAMEOBJECT>* coObjects, vector<LPCOLLISIONEVENT>& coEvents);
 
 public:
-	SOPHIABODY();
+	TANKBODY();
 	virtual void SetState(int state);
 };
 

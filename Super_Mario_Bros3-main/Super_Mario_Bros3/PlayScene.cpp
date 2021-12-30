@@ -256,9 +256,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			DebugOut(L"[ERROR] MINI_JASON object was created before!\n");
 			return;
 		}
-		obj = new JASONSMALL(x, getMapheight() - y);
+		obj = new MINI_JASON(x, getMapheight() - y);
 
-		player3 = (JASONSMALL*)obj;
+		player3 = (MINI_JASON*)obj;
 
 		DebugOut(L"[INFO] Player object created!\n");
 
@@ -268,6 +268,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_CTANKBULLET: obj = new CTANKBULLET(); break;
 	case OBJECT_TYPE_NoCollisionObject: obj = new CNoCollisionObject(); break;
 	case OBJECT_TYPE_STATBAR: obj = new CSTATBAR(atoi(tokens[4].c_str())); break;
+	case OBJECT_TYPE_ITEMS:
+	{
+		obj = new Items(0);
+	}
+	break;
 	case OBJECT_TYPE_TANK_WHEEL:
 	{
 		float part = atof(tokens[4].c_str());
@@ -281,7 +286,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	break;
 	case OBJECT_TYPE_TANK_BODY:
 	{
-		obj = new SOPHIABODY();
+		obj = new TANKBODY();
 	}
 	break;
 	case OBJECT_TYPE_JASON_BULLET_1:
@@ -292,7 +297,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 	case OBJECT_TYPE_TANK_TURRET:
 	{
-		obj = new SOPHIATURRET();
+		obj = new TANKTURRET();
 	}
 	break;
 	case OBJECT_TYPE_TANKDOOR:
@@ -563,6 +568,10 @@ void CPlayScene::Unload()
 
 	delete quadtree;
 
+	CGame* game = CGame::GetInstance();
+
+	game->setFilming(false);
+
 	DebugOut(L"[INFO] Scene %s unloaded! \n", sceneFilePath);
 }
 
@@ -601,7 +610,7 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		}
 		else
 		{
-			JASONSMALL* player = playscene->GetPlayer3();
+			MINI_JASON* player = playscene->GetPlayer3();
 			switch (KeyCode)
 			{
 			case DIK_SPACE:
@@ -647,7 +656,7 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 	if (KeyCode == DIK_Z && playscene->GetPlayer3())
 	{
 		playscene->setpiloting(!playscene->getpiloting());
-		JASONSMALL* player = playscene->GetPlayer3();
+		MINI_JASON* player = playscene->GetPlayer3();
 		//if (!playscene->getpiloting())
 		{
 			player->SetState(SOPHIA_STATE_JUMP);
@@ -680,7 +689,7 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		}
 		else
 		{
-			JASONSMALL* player = playscene->GetPlayer3();
+			MINI_JASON* player = playscene->GetPlayer3();
 			switch (KeyCode)
 			{
 			case DIK_A:
@@ -738,7 +747,7 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 		}
 		else
 		{
-			JASONSMALL* player = playscene->GetPlayer3();
+			MINI_JASON* player = playscene->GetPlayer3();
 			if (player->GetState() == SOPHIA_STATE_DIE) return;
 			if (game->IsKeyDown(DIK_RIGHT))
 				player->SetState(SOPHIA_STATE_WALKING_RIGHT);

@@ -4,15 +4,15 @@
 #include "DF.h"
 
 
-SOPHIATURRET::SOPHIATURRET()
+TANKTURRET::TANKTURRET()
 {
 }
 
-void SOPHIATURRET::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void TANKTURRET::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 }
 
-void SOPHIATURRET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void TANKTURRET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 
 	CGameObject::Update(dt, coObjects);
@@ -37,7 +37,7 @@ void SOPHIATURRET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 }
 
 
-void SOPHIATURRET::Render()
+void TANKTURRET::Render()
 {
 	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
@@ -57,12 +57,15 @@ void SOPHIATURRET::Render()
 	if (SOPHIA->GetisAimingUp())
 		ani = ani + 2;
 
-	animation_set->at(ani)->Render(x, y);
+	int alpha = 255;
+	if (SOPHIA->getUntouchable()) alpha = 128;
+
+	animation_set->at(ani)->Render(x, y, alpha);
 
 	//RenderBoundingBox();
 }
 
-void SOPHIATURRET::SetState(int state)
+void TANKTURRET::SetState(int state)
 {
 	CGameObject::SetState(state);
 	//switch (state)

@@ -47,6 +47,7 @@
 #include "HeathPoint.h"
 #include "JasonSmall.h"
 #include "SophiaDoor.h"
+#include "Items.h"
 
 #define QUADTREE_SECTION_SETTINGS	1
 #define QUADTREE_SECTION_OBJECTS	2
@@ -96,7 +97,7 @@ class CPlayScene : public CScene
 protected:
 	CSOPHIA* player;				// A play scene has to have player, right? 
 	JASON* player2;
-	JASONSMALL* player3;
+	MINI_JASON* player3;
 	vector<LPGAMEOBJECT> objects;
 	vector<LPGAMEOBJECT> secondLayer;
 	int mapHeight;
@@ -107,6 +108,7 @@ protected:
 	vector<CEvenType1*> KaboomMng;
 	vector<CEvenType1*> BoomCarryMng;
 	vector<CEvenType1*> CGXMng;
+	vector<CEvenType1*> ItemsMng;
 	vector<MapCamera*> MapCam;
 	
 	int filming_duration = 1000;
@@ -138,7 +140,7 @@ public:
 
 	CSOPHIA* GetPlayer() { return player; }
 	JASON* GetPlayer2() { return player2; }
-	JASONSMALL* GetPlayer3() { return player3; }
+	MINI_JASON* GetPlayer3() { return player3; }
 
 	void setpiloting(int value)
 	{
@@ -171,6 +173,27 @@ public:
 	int getMapheight()
 	{
 		return mapHeight;
+	}
+	
+	/////////////////ItemsMng
+	void AddItemsMng(float x, float y, int num)
+	{
+		CEvenType1* obj = new CEvenType1(x, y, num);
+		this->ItemsMng.push_back(obj);
+	}
+	CEvenType1* GetItemsMng()
+	{
+		return ItemsMng.at(0);
+	}
+	bool CheckItemsMng()
+	{
+		if (ItemsMng.size() != 0)
+			return true;
+		return false;
+	}
+	void DeleteItemsMng()
+	{
+		this->ItemsMng.erase(ItemsMng.begin());
 	}
 	/////////////////CGXMng
 	void AddCGXMng(float x, float y, float vx, float vy)

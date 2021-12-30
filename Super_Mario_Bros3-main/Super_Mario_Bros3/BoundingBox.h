@@ -1,8 +1,8 @@
 #pragma once
 #include "GameObject.h"
-#define BoundingBoxObject_TYPE_NORMAL	1
-#define BoundingBoxObject_TYPE_NUMBER_THREE	2
-#define BoundingBoxObject_TYPE_BUSH_INTRO_SCENE	3
+#define NoCollisionObject_TYPE_NORMAL	1
+#define NoCollisionObject_TYPE_NUMBER_THREE	2
+#define NoCollisionObject_TYPE_BUSH_INTRO_SCENE	3
 class CNoCollisionObject : public CGameObject
 {
 	bool isRender;

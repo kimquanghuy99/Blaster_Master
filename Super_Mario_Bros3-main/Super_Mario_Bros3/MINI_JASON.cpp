@@ -8,7 +8,7 @@
 #include "PlayScene.h"
 #include "Portal.h"
 
-JASONSMALL::JASONSMALL(float x, float y) : CGameObject()
+MINI_JASON::MINI_JASON(float x, float y) : CGameObject()
 {
 	untouchable = 0;
 	SetState(MINI_JASON_STATE_IDLE);
@@ -19,7 +19,7 @@ JASONSMALL::JASONSMALL(float x, float y) : CGameObject()
 
 }
 
-void JASONSMALL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void MINI_JASON::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	int id = CGame::GetInstance()->GetCurrentScene()->GetId();
 	CGame* game = CGame::GetInstance();
@@ -103,7 +103,7 @@ void JASONSMALL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }
 
-void JASONSMALL::Render()
+void MINI_JASON::Render()
 {
 	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 	if (!playscene->getpiloting())
@@ -137,7 +137,7 @@ void JASONSMALL::Render()
 	}
 }
 
-void JASONSMALL::SetState(int state)
+void MINI_JASON::SetState(int state)
 {
 	CGameObject::SetState(state);
 
@@ -166,7 +166,7 @@ void JASONSMALL::SetState(int state)
 	}
 }
 
-void JASONSMALL::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void MINI_JASON::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 	if (!playscene->getpiloting())
@@ -183,12 +183,12 @@ void JASONSMALL::GetBoundingBox(float& left, float& top, float& right, float& bo
 /*
 	Reset MINI_JASON status to the beginning state of a scene
 */
-void JASONSMALL::Reset()
+void MINI_JASON::Reset()
 {
 	SetState(MINI_JASON_STATE_IDLE);
 }
 
-void JASONSMALL::CalcPotentialCollisions(
+void MINI_JASON::CalcPotentialCollisions(
 	vector<LPGAMEOBJECT>* coObjects,
 	vector<LPCOLLISIONEVENT>& coEvents)
 {
@@ -223,11 +223,12 @@ void JASONSMALL::CalcPotentialCollisions(
 			if (dynamic_cast<CPortal*>(e->obj))
 			{
 				CPortal* portal = dynamic_cast<CPortal*>(e->obj);
-				if (portal->GetSceneId() != -1)
-					game->SwitchScene(portal->GetSceneId());
 				playscene->StartFilming();
 				game->setFilming(true);
-				playscene->setCamState(portal->GetCamState());
+				if(portal->GetCamState() != -1)
+					playscene->setCamState(portal->GetCamState());
+				if (portal->GetSceneId() != -1)
+					game->SwitchScene(portal->GetSceneId());
 				continue;
 			}
 			else
