@@ -38,7 +38,7 @@
 #include "Textures.h"
 #include "Sprites.h"
 #include "Portal.h"
-#include "DF.h"
+#include "DefineAll.h"
 #include "WaveBullet.h"
 #include "Grenade.h"
 #include "GXBullet.h"

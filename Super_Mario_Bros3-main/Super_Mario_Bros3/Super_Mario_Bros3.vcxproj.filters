@@ -99,9 +99,6 @@
     <ClInclude Include="SOPHIA.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="DF.h">
-      <Filter>Header Files\OBJ</Filter>
-    </ClInclude>
     <ClInclude Include="EFFECT.h">
       <Filter>Header Files\OBJ</Filter>
     </ClInclude>
@@ -188,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Stuka.h">
       <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="DefineAll.h">
+      <Filter>Header Files\OBJ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
