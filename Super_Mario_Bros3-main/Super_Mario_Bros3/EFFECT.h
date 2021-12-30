@@ -1,8 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "DefineAll.h"
 
-#define BRICK_BBOX_WIDTH  16
-#define BRICK_BBOX_HEIGHT 16
+
 
 class EFFECT : public CGameObject
 {

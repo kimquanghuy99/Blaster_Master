@@ -1,6 +1,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include "DefineAll.h"
 
 #define ITEMS_BBOX_WIDTH  16
 #define ITEMS_BBOX_HEIGHT 16

@@ -1,22 +1,8 @@
 #pragma once
 #include "GameObject.h"
-#define CGRENADE_SPEED 0.2f
-#define CGRENADE_STATE_DIE_SPEED 0
+#include "DefineAll.h"
 
-#define CGRENADE_BBOX_WIDTH	7
-#define CGRENADE_BBOX_HEIGHT 9
 
-#define	CGRENADE_STATE_DIE	90
-#define CGRENADE_STATE_FLYING 100
-
-#define CGRENADE_ANI_FLYING_RIGHT 0
-#define CGRENADE_ANI_FLYING_LEFT 1
-
-#define CGRENADE_GRAVITY	0.0008f
-#define CGRENADE_RESET_TIME 300
-#define CGRENADE_CHANGE_SPEED_TIME 20
-
-#define STORING_LOCATION 5000
 
 
 class CGRENADE : public CGameObject

@@ -3,23 +3,9 @@
 #include "GameObject.h"
 #include "algorithm"
 #include "PlayScene.h"
+#include "DefineAll.h"
 
-#define CBOOM_BBOX_WIDTH	18
-#define CBOOM_BBOX_HEIGHT 10
 
-#define CBOOM_STATE_IDLE	50
-#define CBOOM_STATE_MOVE	100
-#define	CBOOM_STATE_TOP_RIGHT	1
-#define	CBOOM_STATE_TOP_LEFT	2
-#define	CBOOM_STATE_BOTTOM_RIGHT	3
-#define	CBOOM_STATE_BOTTOM_LEFT	0
-#define CBOOM_GRAVITY		0.0008f
-
-#define EXPLOSING_TIMING		2000
-#define CBOOM_DISAPEAR_TIME_LIMIT		1000
-#define CBOOM_DELAY_TIME_MOVING		1000
-#define CBOOM_VX		0.1f
-#define CBOOM_VY		0.5f
 
 class CBOOM : public CGameObject
 {

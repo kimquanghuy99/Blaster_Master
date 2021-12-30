@@ -1,8 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "DefineAll.h"
 
-#define BREAKABLE_BRICK_BBOX_WIDTH  16
-#define BREAKABLE_BRICK_BBOX_HEIGHT 16
+
 
 class CBREAKABLE_BRICK : public CGameObject
 {

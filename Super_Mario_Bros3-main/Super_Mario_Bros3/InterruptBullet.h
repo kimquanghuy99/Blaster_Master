@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "DefineAll.h"
+
 #define CINTERRUPT_BULLET_SPEED 0.075f;
 #define CINTERRUPT_BULLET_STATE_DIE_SPEED 0;
 
