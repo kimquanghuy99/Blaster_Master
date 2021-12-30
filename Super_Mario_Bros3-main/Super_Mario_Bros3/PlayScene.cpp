@@ -230,9 +230,9 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 			DebugOut(L"[ERROR] SOPHIA object was created before!\n");
 			return;
 		}
-		obj = new CSOPHIA(x, getMapheight() - y);
+		obj = new SOPHIA(x, getMapheight() - y);
 
-		player = (CSOPHIA*)obj;
+		player = (SOPHIA*)obj;
 
 		DebugOut(L"[INFO] Player object created!\n");
 
@@ -584,7 +584,7 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	{
 		if (playscene->getpiloting())
 		{
-			CSOPHIA* player = playscene->GetPlayer();
+			SOPHIA* player = playscene->GetPlayer();
 			switch (KeyCode)
 			{
 			case DIK_SPACE:
@@ -667,7 +667,7 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 	{
 		if (playscene->getpiloting())
 		{
-			CSOPHIA* player = playscene->GetPlayer();
+			SOPHIA* player = playscene->GetPlayer();
 			switch (KeyCode)
 			{
 			case DIK_A:
@@ -736,7 +736,7 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 	{
 		if (playscene->getpiloting())
 		{
-			CSOPHIA* player = playscene->GetPlayer();
+			SOPHIA* player = playscene->GetPlayer();
 			if (player->GetState() == SOPHIA_STATE_DIE) return;
 			if (game->IsKeyDown(DIK_RIGHT))
 				player->SetState(SOPHIA_STATE_WALKING_RIGHT);

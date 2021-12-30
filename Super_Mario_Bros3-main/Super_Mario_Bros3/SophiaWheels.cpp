@@ -17,7 +17,7 @@ void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	
 	CGameObject::Update(dt, coObjects);
 
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	switch(part)
 	{
@@ -62,7 +62,7 @@ void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void SOPHIAWHEEL::Render()
 {
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	int ani = 0;
 

@@ -6,25 +6,25 @@
 
 CTANKBULLET::CTANKBULLET()
 {
-	SetState(CTANKBULLET_STATE_FLYING);
+	SetState(CSOPHIA_BULLET_STATE_FLYING);
 	nx = 0;
 }
 
 void CTANKBULLET::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	if (state != CTANKBULLET_STATE_DIE) {
+	if (state != CSOPHIA_BULLET_STATE_DIE) {
 		left = x;
 		top = y;
-		right = x + CTANKBULLET_BBOX_WIDTH;
-		bottom = y + CTANKBULLET_BBOX_HEIGHT;
+		right = x + CSOPHIA_BULLET_BBOX_WIDTH;
+		bottom = y + CSOPHIA_BULLET_BBOX_HEIGHT;
 	}
 }
 
 void CTANKBULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	if ((DWORD)GetTickCount64() - reset_start > CTANKBULLET_RESET_TIME)
+	if ((DWORD)GetTickCount64() - reset_start > CSOPHIA_BULLET_RESET_TIME)
 	{
-		state = CTANKBULLET_STATE_DIE;
+		state = CSOPHIA_BULLET_STATE_DIE;
 		reset_start = 0;
 	}
 	CGameObject::Update(dt, coObjects);
@@ -34,18 +34,18 @@ void CTANKBULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	coEvents.clear();
 	
 	// turn off collision when die 
-	if (state != CTANKBULLET_STATE_DIE)
+	if (state != CSOPHIA_BULLET_STATE_DIE)
 		CalcPotentialCollisions(coObjects, coEvents);
 	else
 	{
 		isUsed = false;
 		x = STORING_LOCATION;
 		y = STORING_LOCATION;
-		SetState(CTANKBULLET_STATE_FLYING);
+		SetState(CSOPHIA_BULLET_STATE_FLYING);
 	}
 	if (isUsed == false)
 	{
-		CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+		SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 		if (SOPHIA->GetisFiring() == true)
 		{
 			if (SOPHIA->GetisAlreadyFired() == false)
@@ -60,11 +60,11 @@ void CTANKBULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				}
 				if (SOPHIA->GetisAimingUp())
 				{
-					SetSpeed(0, CTANKBULLET_SPEED);
+					SetSpeed(0, CSOPHIA_BULLET_SPEED);
 				}
 				else
 				{
-					SetSpeed(SOPHIA->nx * CTANKBULLET_SPEED);
+					SetSpeed(SOPHIA->nx * CSOPHIA_BULLET_SPEED);
 				}
 				SOPHIA->SetisAlreadyFired(true);
 				SOPHIA->StartFiring();
@@ -95,12 +95,12 @@ void CTANKBULLET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			{
 				(e->obj)->setheath((e->obj)->Getheath() - SOPHIA_BULLET_DMG);
 				//((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddKaboomMng(e->obj->x, e->obj->y);
-				SetState(CTANKBULLET_STATE_DIE);
+				SetState(CSOPHIA_BULLET_STATE_DIE);
 			}
 			else 
 			{
 				((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddKaboomMng(x, y);
-				SetState(CTANKBULLET_STATE_DIE);
+				SetState(CSOPHIA_BULLET_STATE_DIE);
 			}
 			
 		}
@@ -116,7 +116,7 @@ void CTANKBULLET::CalcPotentialCollisions(
 	for (UINT i = 0; i < coObjects->size(); i++)
 	{
 		LPCOLLISIONEVENT e = SweptAABBEx(coObjects->at(i));
-		if (dynamic_cast<CSOPHIA*>(e->obj))
+		if (dynamic_cast<SOPHIA*>(e->obj))
 		{
 			continue;
 		}
@@ -144,19 +144,19 @@ void CTANKBULLET::Render()
 			return;
 		else {
 			int ani = -1;
-			if (state == CTANKBULLET_STATE_DIE)
+			if (state == CSOPHIA_BULLET_STATE_DIE)
 				return;
 			switch (state)
 			{
-			case CTANKBULLET_STATE_FLYING:
+			case CSOPHIA_BULLET_STATE_FLYING:
 				if (vy != 0)
 					ani = 2;
 				else
 					if (vx > 0)
-						ani = CTANKBULLET_ANI_FLYING_RIGHT;
+						ani = CSOPHIA_BULLET_ANI_FLYING_RIGHT;
 					else
 						if (vx < 0)
-							ani = CTANKBULLET_ANI_FLYING_LEFT;
+							ani = CSOPHIA_BULLET_ANI_FLYING_LEFT;
 				break;
 			}
 			if (ani != -1)
@@ -171,9 +171,9 @@ void CTANKBULLET::SetState(int state)
 	CGameObject::SetState(state);
 	switch (state)
 	{
-	case CTANKBULLET_STATE_DIE:
-		vx = CTANKBULLET_STATE_DIE_SPEED;
-		vy = CTANKBULLET_STATE_DIE_SPEED;
+	case CSOPHIA_BULLET_STATE_DIE:
+		vx = CSOPHIA_BULLET_STATE_DIE_SPEED;
+		vy = CSOPHIA_BULLET_STATE_DIE_SPEED;
 		break;
 
 	}

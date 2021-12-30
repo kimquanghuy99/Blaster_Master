@@ -17,7 +17,7 @@ void SOPHIABODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	CGameObject::Update(dt, coObjects);
 
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	x = SOPHIA->x + BODY_DISTANT_X;
 
@@ -36,7 +36,7 @@ void SOPHIABODY::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void SOPHIABODY::Render()
 {
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	int ani = 0;
 

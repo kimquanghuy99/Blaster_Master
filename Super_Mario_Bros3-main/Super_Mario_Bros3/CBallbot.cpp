@@ -109,7 +109,7 @@ void CBALLBOT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				}
 			}
 			CGame* game = CGame::GetInstance();
-			if (dynamic_cast<CSOPHIA*>(e->obj) && !playscene->GetPlayer()->getUntouchable())
+			if (dynamic_cast<SOPHIA*>(e->obj) && !playscene->GetPlayer()->getUntouchable())
 			{
 				playscene->GetPlayer()->StartUntouchable();
 				game->setheath(game->Getheath() - 100);

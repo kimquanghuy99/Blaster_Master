@@ -17,7 +17,7 @@ void SOPHIATURRET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	CGameObject::Update(dt, coObjects);
 
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	x = SOPHIA->x + TURRET_DISTANT_X;
 
@@ -39,7 +39,7 @@ void SOPHIATURRET::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void SOPHIATURRET::Render()
 {
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	int ani = pre_ani;
 

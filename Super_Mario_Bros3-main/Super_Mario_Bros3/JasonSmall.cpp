@@ -205,7 +205,7 @@ void JASONSMALL::CalcPotentialCollisions(
 		{
 			continue;
 		}
-		if (dynamic_cast<CSOPHIA*>(e->obj))
+		if (dynamic_cast<SOPHIA*>(e->obj))
 		{
 			continue;
 		}

@@ -17,7 +17,7 @@ void SOPHIADOOR::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	CGameObject::Update(dt, coObjects);
 
-	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	SOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
 	if (pre_ani == 0)
 	{
@@ -38,7 +38,7 @@ void SOPHIADOOR::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void SOPHIADOOR::Render()
 {
 	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
-	CSOPHIA* SOPHIA = playscene->GetPlayer();
+	SOPHIA* SOPHIA = playscene->GetPlayer();
 	
 
 

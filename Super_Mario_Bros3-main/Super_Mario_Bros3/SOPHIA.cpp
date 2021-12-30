@@ -8,7 +8,7 @@
 #include "PlayScene.h"
 #include "Portal.h"
 
-CSOPHIA::CSOPHIA(float x, float y) : CGameObject()
+SOPHIA::SOPHIA(float x, float y) : CGameObject()
 {
 
 	untouchable = 0;
@@ -21,7 +21,7 @@ CSOPHIA::CSOPHIA(float x, float y) : CGameObject()
 	
 }
 
-void CSOPHIA::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void SOPHIA::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	int id = CGame::GetInstance()->GetCurrentScene()->GetId();
 	CGame* game = CGame::GetInstance();
@@ -102,7 +102,7 @@ void CSOPHIA::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 }
 
-void CSOPHIA::Render()
+void SOPHIA::Render()
 {
 	//
 	//int ani = -1;
@@ -128,7 +128,7 @@ void CSOPHIA::Render()
 	////RenderBoundingBox();
 }
 
-void CSOPHIA::SetState(int state)
+void SOPHIA::SetState(int state)
 {
 	CGameObject::SetState(state);
 
@@ -157,7 +157,7 @@ void CSOPHIA::SetState(int state)
 	}
 }
 
-void CSOPHIA::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void SOPHIA::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	CGame* game = CGame::GetInstance();
 	if (!game->Getheath() == 0)
@@ -177,12 +177,12 @@ void CSOPHIA::GetBoundingBox(float& left, float& top, float& right, float& botto
 /*
 	Reset SOPHIA status to the beginning state of a scene
 */
-void CSOPHIA::Reset()
+void SOPHIA::Reset()
 {
 	SetState(SOPHIA_STATE_IDLE);
 }
 
-void CSOPHIA::CalcPotentialCollisions(
+void SOPHIA::CalcPotentialCollisions(
 	vector<LPGAMEOBJECT>* coObjects,
 	vector<LPCOLLISIONEVENT>& coEvents)
 {

@@ -95,7 +95,7 @@ public:
 class CPlayScene : public CScene
 {
 protected:
-	CSOPHIA* player;				// A play scene has to have player, right? 
+	SOPHIA* player;				// A play scene has to have player, right? 
 	JASON* player2;
 	JASONSMALL* player3;
 	vector<LPGAMEOBJECT> objects;
@@ -138,7 +138,7 @@ public:
 	bool IsInUseArea(float Ox, float Oy);
 	bool IsInside(float Ox, float Oy, float xRange, float yRange, float tx, float ty);
 
-	CSOPHIA* GetPlayer() { return player; }
+	SOPHIA* GetPlayer() { return player; }
 	JASON* GetPlayer2() { return player2; }
 	JASONSMALL* GetPlayer3() { return player3; }
 
