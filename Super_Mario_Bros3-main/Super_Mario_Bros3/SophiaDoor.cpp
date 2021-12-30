@@ -4,15 +4,15 @@
 #include "DF.h"
 
 
-CSOPHIADOOR::CSOPHIADOOR()
+CTANKDOOR::CTANKDOOR()
 {
 }
 
-void CSOPHIADOOR::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void CTANKDOOR::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 }
 
-void CSOPHIADOOR::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void CTANKDOOR::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 
 	CGameObject::Update(dt, coObjects);
@@ -35,7 +35,7 @@ void CSOPHIADOOR::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 }
 
 
-void CSOPHIADOOR::Render()
+void CTANKDOOR::Render()
 {
 	CPlayScene* playscene = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene());
 	CSOPHIA* SOPHIA = playscene->GetPlayer();
@@ -69,7 +69,7 @@ void CSOPHIADOOR::Render()
 	
 }
 
-void CSOPHIADOOR::SetState(int state)
+void CTANKDOOR::SetState(int state)
 {
 	CGameObject::SetState(state);
 	//switch (state)
