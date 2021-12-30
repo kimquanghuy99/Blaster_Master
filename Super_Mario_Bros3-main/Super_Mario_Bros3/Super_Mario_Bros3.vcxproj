@@ -149,23 +149,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h" />
-    <ClInclude Include="CBallCarry.h" />
+    <ClInclude Include="BallCarry.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CBallbot.h" />
+    <ClInclude Include="Ballbot.h" />
     <ClInclude Include="Boom.h" />
     <ClInclude Include="BrickCover.h" />
-    <ClInclude Include="CDrap.h" />
+    <ClInclude Include="Drap.h" />
     <ClInclude Include="Grenade.h" />
-    <ClInclude Include="CGX680.h" />
-    <ClInclude Include="CGX680S.h" />
+    <ClInclude Include="GX680.h" />
+    <ClInclude Include="GX680S.h" />
     <ClInclude Include="GXBullet.h" />
     <ClInclude Include="InterruptBullet.h" />
-    <ClInclude Include="CLaserGuard.h" />
+    <ClInclude Include="LaserGuard.h" />
     <ClInclude Include="LaserBullet.h" />
-    <ClInclude Include="CREDWORM.h" />
+    <ClInclude Include="InterruptWorm.h" />
     <ClInclude Include="HeathPoint.h" />
-    <ClInclude Include="CStuka.h" />
+    <ClInclude Include="Stuka.h" />
     <ClInclude Include="SophiaBullet.h" />
     <ClInclude Include="SophiaDoor.h" />
     <ClInclude Include="WaveBullet.h" />

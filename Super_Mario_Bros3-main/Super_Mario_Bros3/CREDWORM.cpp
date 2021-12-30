@@ -1,4 +1,4 @@
-#include "CREDWORM.h"
+#include "INTERRUPTWORM.h"
 #include <algorithm>
 #include "PlayScene.h"
 #include "Brick.h"
@@ -37,13 +37,11 @@ void CREDWORM::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			playscene->AddItemsMng(x, y, 0);
 		spammed = true;
 	}
-	// Simple fall down
 	if (state != CREDWORM_STATE_DIE)
-		vy -= SOPHIA_GRAVITY * dt;
+		vy -= SOPHIA_GRAVITY *dt;
 
 	coEvents.clear();
 
-	// turn off collision when die 
 	if (state != CREDWORM_STATE_DIE)
 		CalcPotentialCollisions(coObjects, coEvents);
 	else
@@ -65,20 +63,19 @@ void CREDWORM::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		}
 	}
 
-	if (playscene->GetPlayer()->GetPositionX() > this->x)
+	if (playscene->GetPlayer()->GetPositionX() > this->x )
 	{
-		vx = CREDWORM_SPEED;
-		nx = 1;
+		
+		
+			vx = CREDWORM_SPEED;
+			nx = 1;
+		
 	}
-	else 
+	else
 	{
-		vx = -CREDWORM_SPEED;
-		nx = -1;
+			vx = -CREDWORM_SPEED;
+			nx = -1;
 	}
-
-	
-
-	// No collision occured, proceed normally
 	if (coEvents.size() == 0)
 	{
 		x += dx;
@@ -90,23 +87,12 @@ void CREDWORM::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		float rdx = 0;
 		float rdy = 0;
 
-		// TODO: This is a very ugly designed function!!!!
 		FilterCollision(coEvents, coEventsResult, min_tx, min_ty, nx, ny, rdx, rdy);
-
-		// how to push back SOPHIA if collides with a moving objects, what if SOPHIA is pushed this way into another object?
-		//if (rdx != 0 && rdx!=dx)
-		//	x += nx*abs(rdx); 
-
-		// block every object first!
 		x += min_tx * dx + nx * 0.4f;
 		y += min_ty * dy + ny * 0.4f;
 
 		if (nx != 0) vx = 0;
 		if (ny != 0) vy = 0;
-
-		//
-		// Collision logic with other objects
-		//
 
 		for (UINT i = 0; i < coEventsResult.size(); i++)
 		{
@@ -118,7 +104,6 @@ void CREDWORM::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				game->setheath(game->Getheath() - 100);
 			}
 		}
-		// clean up collision events
 		for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
 		if (x <= 0)
 			if (vx < 0)

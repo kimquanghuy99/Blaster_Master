@@ -1,4 +1,4 @@
-#include "CGX680.h"
+#include "GX680.h"
 CGX680::CGX680()
 {
 	SetState(STATE_IDLE);

@@ -1,4 +1,4 @@
-#include "CSTUKA.h"
+#include "STUKA.h"
 CSTUKA::CSTUKA()
 {
 	SetState(CSTUKA_STATE_WALKING);

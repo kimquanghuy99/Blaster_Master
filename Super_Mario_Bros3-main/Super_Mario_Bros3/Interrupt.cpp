@@ -29,7 +29,8 @@ void CINTERRUPT::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->AddKaboomMng(x, y);
 		int chance = rand() % 100;
 		srand(time(NULL));
-		if (chance >= 70)
+		if (chance >= 50)
+			
 			playscene->AddItemsMng(x, y, 0);
 		spammed = true;
 	}

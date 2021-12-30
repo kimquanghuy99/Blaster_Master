@@ -10,19 +10,19 @@
 #include "Map.h"
 #include "SophiaWheels.h"
 #include "MapObj.h"
-#include "CLaserGuard.h"
-#include "CBallCarry.h"
-#include "CBallbot.h"
-#include "CDRAP.h"
-#include "CGX680.h"
-#include "CGX680S.h"
-#include "CSTUKA.h"
+#include "LaserGuard.h"
+#include "BallCarry.h"
+#include "Ballbot.h"
+#include "DRAP.h"
+#include "GX680.h"
+#include "GX680S.h"
+#include "STUKA.h"
 #include "Eyelet.h"
 #include "Interrupt.h"
 #include "SophiaBullet.h"
 #include "CEvent.h"
 #include "InterruptBullet.h"
-#include "CREDWORM.h"
+#include "INTERRUPTWORM.h"
 #include "SophiaBody.h"
 #include "SophiaTurret.h"
 #include "EFFECT.h"
@@ -103,12 +103,12 @@ protected:
 	int mapHeight;
 	Map* map;
 	CQuadTree* quadtree;
-	vector<CEvenType1*> InterruptBulletMng ;
-	vector<CEvenType1*> WormSpamMng;
-	vector<CEvenType1*> KaboomMng;
-	vector<CEvenType1*> BoomCarryMng;
-	vector<CEvenType1*> CGXMng;
-	vector<CEvenType1*> ItemsMng;
+	vector<Event*> InterruptBulletMng ;
+	vector<Event*> WormSpamMng;
+	vector<Event*> KaboomMng;
+	vector<Event*> BoomCarryMng;
+	vector<Event*> CGXMng;
+	vector<Event*> ItemsMng;
 	vector<MapCamera*> MapCam;
 	
 	int filming_duration = 1000;
@@ -178,10 +178,10 @@ public:
 	/////////////////ItemsMng
 	void AddItemsMng(float x, float y, int num)
 	{
-		CEvenType1* obj = new CEvenType1(x, y, num);
+		Event* obj = new Event(x, y, num);
 		this->ItemsMng.push_back(obj);
 	}
-	CEvenType1* GetItemsMng()
+	Event* GetItemsMng()
 	{
 		return ItemsMng.at(0);
 	}
@@ -198,10 +198,10 @@ public:
 	/////////////////CGXMng
 	void AddCGXMng(float x, float y, float vx, float vy)
 	{
-		CEvenType1* obj = new CEvenType1(x, y, 0, vx, vy);
+		Event* obj = new Event(x, y, 0, vx, vy);
 		this->CGXMng.push_back(obj);
 	}
-	CEvenType1* GetCGXMng()
+	Event* GetCGXMng()
 	{
 		return CGXMng.at(0);
 	}
@@ -218,7 +218,7 @@ public:
 	/////////////////BoomCarryMng
 	void AddBoomCarryMng(float x, float y)
 	{
-		CEvenType1* obj = new CEvenType1(x, y);
+		Event* obj = new Event(x, y);
 		this->BoomCarryMng.push_back(obj);
 	}
 	void CheckStackBoomCarryMng()
@@ -232,7 +232,7 @@ public:
 			DeleteBoomCarryMng();
 		}
 	}
-	CEvenType1* GetBoomCarryMng()
+	Event* GetBoomCarryMng()
 	{
 		return BoomCarryMng.at(0);
 	}
@@ -249,10 +249,10 @@ public:
 	/////////////////KaboomMng
 	void AddKaboomMng(float x, float y)
 	{
-		CEvenType1* obj = new CEvenType1(x, y);
+		Event* obj = new Event(x, y);
 		this->KaboomMng.push_back(obj);
 	}
-	CEvenType1* GetKaboomMng()
+	Event* GetKaboomMng()
 	{
 		return KaboomMng.at(0);
 	}
@@ -269,10 +269,10 @@ public:
 	/////////////////InterruptBulletMng
 	void AddInterruptBulletMng(float x, float y)
 	{
-		CEvenType1* obj = new CEvenType1(x, y);
+		Event* obj = new Event(x, y);
 		this->InterruptBulletMng.push_back(obj);
 	}
-	CEvenType1* GetInterruptBulletMng()
+	Event* GetInterruptBulletMng()
 	{
 		return InterruptBulletMng.at(0);
 	}
@@ -289,10 +289,10 @@ public:
 	//////////////////////////WormSpamMng
 	void AddWormSpamMng(float x, float y)
 	{
-		CEvenType1* obj = new CEvenType1(x, y);
+		Event* obj = new Event(x, y);
 		this->WormSpamMng.push_back(obj);
 	}
-	CEvenType1* GetWormSpamMng()
+	Event* GetWormSpamMng()
 	{
 		return WormSpamMng.at(0);
 	}

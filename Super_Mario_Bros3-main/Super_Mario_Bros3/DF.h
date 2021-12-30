@@ -95,7 +95,7 @@
 ////////////////////////////JASON
 #define JASON_WALKING_SPEED		0.15f
 //0.1f
-#define JASON_JUMP_SPEED_Y		0.5f
+#define JASON_JUMP_SPEED_Y		0.7f
 #define JASON_JUMP_DEFLECT_SPEED 0.2f
 #define JASON_GRAVITY			0.002f
 #define JASON_DIE_DEFLECT_SPEED	 0.5f

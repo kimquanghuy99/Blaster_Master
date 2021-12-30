@@ -1,4 +1,4 @@
-#include "CLaserGuard.h"
+#include "LaserGuard.h"
 CDRAP::CDRAP()
 {
 	SetState(STATE_IDLE);

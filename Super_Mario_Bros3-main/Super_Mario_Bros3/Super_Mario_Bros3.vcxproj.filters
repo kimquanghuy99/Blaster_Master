@@ -31,14 +31,11 @@
     <Filter Include="Source Files\Player">
       <UniqueIdentifier>{fe6bb8e3-dbf4-463e-91d4-dd70a0bf0df1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\OtherObj">
-      <UniqueIdentifier>{77e3cbde-df3d-4e92-9efc-6997792fdcf4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CEvent">
-      <UniqueIdentifier>{4de27295-4212-45ac-a135-83fdc33da32f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\OBJ">
       <UniqueIdentifier>{b5fc293a-c591-46fb-b5b8-98c781fa5ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OBJ">
+      <UniqueIdentifier>{77e3cbde-df3d-4e92-9efc-6997792fdcf4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,35 +90,11 @@
     <ClInclude Include="Interrupt.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="CBallbot.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrap.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CGX680.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CGX680S.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CLaserGuard.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CStuka.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Eyelet.h">
-      <Filter>Header Files\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="CBallCarry.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="MapObj.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="CREDWORM.h">
-      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="SOPHIA.h">
       <Filter>Header Files\Player</Filter>
@@ -190,7 +163,31 @@
       <Filter>Header Files\OBJ</Filter>
     </ClInclude>
     <ClInclude Include="CEvent.h">
-      <Filter>Header Files\CEvent</Filter>
+      <Filter>Header Files\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="Ballbot.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BallCarry.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Drap.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GX680.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GX680S.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserGuard.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="InterruptWorm.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Stuka.h">
+      <Filter>Header Files\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -240,7 +237,7 @@
       <Filter>Source Files\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Brick.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="CBallbot.cpp">
       <Filter>Source Files\Enemy</Filter>
@@ -279,7 +276,7 @@
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="EFFECT.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="JASON.cpp">
       <Filter>Source Files\Player</Filter>
@@ -291,31 +288,31 @@
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="Boom.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="Grenade.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="GXBullet.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="InterruptBullet.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="LaserBullet.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="HeathPoint.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="SophiaBullet.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="WaveBullet.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="SophiaDoor.cpp">
       <Filter>Source Files\Player</Filter>
@@ -333,10 +330,10 @@
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
     <ClCompile Include="CBREAKABLE_BRICK.cpp">
-      <Filter>Source Files\OtherObj</Filter>
+      <Filter>Source Files\OBJ</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
