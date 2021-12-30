@@ -6,7 +6,6 @@ Sound* Sound::instance = nullptr;
 Sound* Sound::getInstance()
 {
 	if (instance == nullptr)
-		/*instance = new Sound(CGame::GetCurrenthWnd());*/
 	return instance;
 }
 
@@ -21,7 +20,6 @@ Sound::Sound(HWND hWnd)
 
 	if (FAILED(result))
 	{
-		//GAMELOG("Can not create device");
 	}
 
 	result = pDevice->SetCooperativeLevel(hWnd, DSSCL_PRIORITY); // set the cooperative level.
@@ -37,7 +35,6 @@ Sound::Sound(HWND hWnd)
 
 	if (FAILED(result))
 	{
-		//GAMELOG("Can not create primaryBuffer");
 	}
 	volume = 90.0f;
 	isMute = false;
@@ -94,17 +91,14 @@ void Sound::loadSound(const char* fileName, std::string name)
 	int error = fopen_s(&filePtr, fileName, "rb");
 	if (error != 0)
 	{
-		//MessageBox m = (" Can not load: %s", fileName);
 		return;
 	}
 
 	fread(&waveHeaderStruct, sizeof(WaveHeaderStruct), 1, filePtr);
-	//fread(&waveFileHeader, sizeof(waveFileHeader), 1, filePtr);
 
 	if ((waveHeaderStruct.format[0] != 'W') || (waveHeaderStruct.format[1] != 'A') ||
 		(waveHeaderStruct.format[2] != 'V') || (waveHeaderStruct.format[3] != 'E'))
 	{
-		//GAMELOG(" file format does not support: %s", fileName);
 	}
 
 	waveFormat.wFormatTag = WAVE_FORMAT_PCM;
@@ -137,11 +131,9 @@ void Sound::loadSound(const char* fileName, std::string name)
 
 	if (FAILED(result))
 	{
-		//GAMELOG(" Can not create secondaryBuffer ");
 		return;
 	}
 
-	//fseek(filePtr, sizeof(WaveHeaderStruct), SEEK_SET); // move the filePointer cursor to data section
 
 	fseek(filePtr, sizeof(WaveHeaderStruct), SEEK_SET);
 
@@ -155,7 +147,6 @@ void Sound::loadSound(const char* fileName, std::string name)
 	error = fclose(filePtr);
 	if (error != 0)
 	{
-		//GAMELOG(" Can not close file ");
 	}
 
 	result = (*pSecondaryBuffer)->Lock(0, waveHeaderStruct.dataSize, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);

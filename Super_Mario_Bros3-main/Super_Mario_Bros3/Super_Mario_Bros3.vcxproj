@@ -202,7 +202,6 @@
   <ItemGroup>
     <ClCompile Include="BallCarry.cpp" />
     <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Ballbot.cpp" />
     <ClCompile Include="Boom.cpp" />
     <ClCompile Include="BrickCover.cpp" />
@@ -228,7 +227,6 @@
     <ClCompile Include="JASON.cpp" />
     <ClCompile Include="Koopas.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MapCamera.cpp" />
     <ClCompile Include="MapObj.cpp" />
     <ClCompile Include="JasonSmall.cpp" />
     <ClCompile Include="BoundingBox.cpp" />

@@ -74,19 +74,17 @@ void CQuadTree::_ParseSection_OBJECTS(string line)
 
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 
-	if (tokens.size() < 4) return; // skip invalid lines
+	if (tokens.size() < 4) return;
 
 	int x = atoi(tokens[1].c_str());
 	int y = atoi(tokens[2].c_str());
 
-	/*int cellX = atoi(tokens[5].c_str());
-	int cellY = atoi(tokens[6].c_str());*/
+
 
 	int object_type = atoi(tokens[0].c_str());
 
 	int ani_set_id = atoi(tokens[3].c_str());
 
-	/*int renderLayer = atoi(tokens[4].c_str());*/
 
 	CGameObject* obj = NULL;
 
@@ -114,7 +112,6 @@ void CQuadTree::_ParseSection_OBJECTS(string line)
 		DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 		return;
 	}
-	// General object setup
 	LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 	if (obj != NULL)
 	{
@@ -123,7 +120,6 @@ void CQuadTree::_ParseSection_OBJECTS(string line)
 		obj->SetPosition((float)x, playscene->getMapheight() - (float)y);
 		obj->SetAnimationSet(ani_set);
 		obj->SetOrigin((float)x, (float)y, obj->GetState());
-		/*obj->SetrenderLayer(renderLayer);*/
 		Add(obj);
 	}
 }
@@ -135,7 +131,6 @@ void CQuadTree::Load(LPCWSTR filePath)
 	ifstream f;
 	f.open(filePath);
 
-	// current resource section flag
 	int section = 0;
 
 	char str[MAX_QUADTREE_LINE];
@@ -208,8 +203,7 @@ void CQuadTree::Pop(vector<LPGAMEOBJECT>& Object, int CamX, int CamY)
 			{
 				float Ox, Oy;
 				listObjects[i]->GetOriginLocation(Ox, Oy);
-				/*if (!inRange(Ox, Oy, CamX, CamY, CGame::GetInstance()->GetScreenWidth(), CGame::GetInstance()->GetScreenHeight()))
-					listObjects[i]->reset();*/
+
 				Object.push_back(listObjects[i]);
 				listObjects[i]->SetActive(true);
 			}
@@ -226,17 +220,5 @@ void CQuadTree::Pop(vector<LPGAMEOBJECT>& Object, int CamX, int CamY)
 
 void CQuadTree::Unload()
 {
-	//if (this != nullptr)
-	//	if (cells)
-	//	{
-	//		for (unsigned int i = 0; i < numCol; i++)
-	//		{
-	//			for (unsigned int j = 0; j < numRow; j++)
-	//			{
-	//				cells[i][j].Unload();
-	//			}
-	//		}
-	//		delete cells;
-	//		cells = NULL;
-	//	}
+
 }
