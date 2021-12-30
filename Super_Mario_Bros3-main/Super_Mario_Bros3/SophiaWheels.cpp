@@ -3,16 +3,16 @@
 #include "PlayScene.h"
 
 
-TANKWHEEL::TANKWHEEL(int part)
+SOPHIAWHEEL::SOPHIAWHEEL(int part)
 {
 	this->part = part;
 }
 
-void TANKWHEEL::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void SOPHIAWHEEL::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 }
 
-void TANKWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void SOPHIAWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	
 	CGameObject::Update(dt, coObjects);
@@ -60,7 +60,7 @@ void TANKWHEEL::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 }
 
 
-void TANKWHEEL::Render()
+void SOPHIAWHEEL::Render()
 {
 	CSOPHIA* SOPHIA = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
@@ -107,7 +107,7 @@ void TANKWHEEL::Render()
 	//RenderBoundingBox();
 }
 
-void TANKWHEEL::SetState(int state)
+void SOPHIAWHEEL::SetState(int state)
 {
 	CGameObject::SetState(state);
 	//switch (state)
